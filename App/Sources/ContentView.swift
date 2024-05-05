@@ -1,10 +1,11 @@
 import SwiftUI
+import HomeAPI
 
 public struct ContentView: View {
     public init() {}
 
     public var body: some View {
-        Text("Hello, World!")
+        Text("Hello, World Tuist!")
             .padding()
     }
 }

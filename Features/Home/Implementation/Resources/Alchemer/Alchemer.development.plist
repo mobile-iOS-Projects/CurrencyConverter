@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>appKey</key>
+	<string>IOS-SAP-MOBILE-START-DEV</string>
+	<key>signatureKey</key>
+	<string>1ec8f5fbc170e876c762c4e4b5da2af1</string>
+</dict>
+</plist>

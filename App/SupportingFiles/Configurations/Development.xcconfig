@@ -1,0 +1,18 @@
+#include "../../../Shared/Configurations/FeatureFlagsDevelopment.xcconfig"
+
+// Signing
+CODE_SIGN_IDENTITY = Apple Development: Mobile CoE‭ Match User (3F8QXY6NA5)
+DEVELOPMENT_TEAM = F32H42MUN7
+CODE_SIGN_STYLE = Manual
+
+// iOS App
+APP_BUNDLE_ID_MAIN = com.sap.mobile.apps.SAPStart.m12n
+PROVISIONING_PROFILE_SPECIFIER_MAIN = match Development $(APP_BUNDLE_ID_MAIN)
+
+// Extensions
+
+// Used within entitlements for com.apple.security.application-groups and Info.plist for App_Group_Id key
+APP_GROUP_ID = group.$(APP_BUNDLE_ID_MAIN)
+
+// App Version
+MARKETING_VERSION = 1.12.0

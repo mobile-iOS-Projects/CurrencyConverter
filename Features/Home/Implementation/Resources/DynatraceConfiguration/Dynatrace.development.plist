@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DTXApplicationID</key>
+	<string>6c52b703-4d86-4d86-b050-48ec8ee10886</string>
+	<key>DTXBeaconURL</key>
+	<string>https://ag.canary.eu10.apm.services.cloud.sap:9999/mbeacon/0e78141b-d12e-44a2-a629-463ad5916258</string>
+	<key>DTXCrashReportingEnabled</key>
+	<false/>
+	<key>DTXInstrumentGPSLocation</key>
+	<false/>
+	<key>DTXAutoStart</key>
+	<false/>
+	<key>DTXUserOptIn</key>
+	<true/>
+	<key>DTXInstrumentFrameworks</key>
+	<true/>
+</dict>
+</plist>
