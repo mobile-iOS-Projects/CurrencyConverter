@@ -2,7 +2,7 @@
 //  Environment+Extensions.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by Schmitt, Frank on 14.02.24.
+//  Created by Sergey Runovich on 6.05.24.
 //
 
 import ProjectDescription

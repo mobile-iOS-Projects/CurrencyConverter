@@ -2,7 +2,7 @@
 //  TextSettings+Extensions.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by Weiß, Alexander on 30.04.23.
+//  Created by Sergey Runovich on 6.05.24.
 //
 
 import Foundation

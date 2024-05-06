@@ -2,7 +2,7 @@
 //  Set+Extensions.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by Steinmetz, Conrad on 24.11.22.
+//  Created by Sergey Runovich on 6.05.24.
 //
 
 import Foundation

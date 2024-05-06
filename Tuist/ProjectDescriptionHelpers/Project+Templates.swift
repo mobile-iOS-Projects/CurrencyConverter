@@ -2,7 +2,7 @@
 //  Project+Templates.swift
 //  ProjectDescriptionHelpers
 //
-//  Created by Weiss, Alexander on 11.01.22.
+//  Created by Sergey Runovich on 6.05.24.
 //
 
 import ProjectDescription

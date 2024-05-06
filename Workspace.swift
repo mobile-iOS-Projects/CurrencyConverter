@@ -9,13 +9,13 @@ let productFeatures: [Path] = [
     "Features/Home",
 ]
 
-//let foundationFeatures: [Path] = [
-//    "Features/Foundation/CDMRuntime",
-//]
+let foundationFeatures: [Path] = [
+    "Features/Foundation/Networking",
+]
 
 let workspace = Workspace(
     name: "CurrencyConverter",
-    projects: executables + productFeatures,
+    projects: executables + productFeatures + foundationFeatures,
     schemes: [],
     additionalFiles: [
         "README.md",
