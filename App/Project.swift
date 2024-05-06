@@ -4,6 +4,11 @@ import ProjectDescriptionHelpers
 let moduleBaseId = "\(workspaceBaseId)"
 
 // MARK: - Scripts
+
+let swiftformatScript: TargetScript = .swiftformatScript(
+    sourcesPath: "$SRCROOT/Sources"
+)
+
 let swiftlintScript: TargetScript = .swiftLintScript(
     sourcesPath: "$SRCROOT/Sources"
 )
@@ -13,6 +18,7 @@ let highlightTodosScript: TargetScript = .highlightTodosScript(
 )
 
 // MARK: - iOS
+
 let iOSBaseSettings: [String: SettingValue] = [
     "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)",
 ]
@@ -43,7 +49,7 @@ let appTarget: Target = .target(
         "Sources/**/*.swift",
     ],
     resources: ["Resources/**/*"],
-    scripts: Environment.isScriptsIncluded() ? [swiftlintScript, highlightTodosScript] : [],
+    scripts: Environment.isScriptsIncluded() ? [swiftformatScript, swiftlintScript, highlightTodosScript] : [],
     dependencies: [
         .project(target: "Home", path: .relativeToRoot("Features/Home")),
     ],

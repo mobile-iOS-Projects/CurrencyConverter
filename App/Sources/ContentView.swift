@@ -1,5 +1,5 @@
-import SwiftUI
 import HomeAPI
+import SwiftUI
 
 public struct ContentView: View {
     public init() {}
@@ -9,7 +9,6 @@ public struct ContentView: View {
             .padding()
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

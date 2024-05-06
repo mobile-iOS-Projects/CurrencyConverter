@@ -11,6 +11,4 @@ public protocol HomeAPI {
     // TODO: - test
 
     func test()
-    
-    
 }
