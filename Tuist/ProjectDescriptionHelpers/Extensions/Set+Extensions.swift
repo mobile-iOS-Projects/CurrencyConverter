@@ -12,11 +12,11 @@ extension Set<Platform> {
     /// Validates the given set of `Platform`s based on the MicroFeature guidelines
     /// - Returns: A ValidationResult
     func validate() -> ValidationResult {
-        guard !self.contains(.macOS) else {
+        guard !contains(.macOS) else {
             return .failed(reason: "Not available for macOS")
         }
 
-        guard !self.contains(.tvOS) else {
+        guard !contains(.tvOS) else {
             return .failed(reason: "Not available for tvOS")
         }
 

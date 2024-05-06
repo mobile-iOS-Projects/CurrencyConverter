@@ -10,9 +10,9 @@ import ProjectDescription
 /// The base bundle id for all products in this workspace - can be accessed by any `Project.swift` file
 public let workspaceBaseId = "com.ios.mobile.apps.CurrencyConverter"
 
-extension Destinations {
+public extension Destinations {
     /// The destinations we support for the given set of platform
-    public static func currencyConverterDestinations(for platforms: Set<Platform>) -> Destinations {
+    static func currencyConverterDestinations(for platforms: Set<Platform>) -> Destinations {
         var set: Destinations = []
         if platforms.contains(.iOS) {
             set.formUnion([.iPhone, .iPad])
@@ -30,9 +30,9 @@ extension Destinations {
     }
 }
 
-extension DeploymentTargets {
+public extension DeploymentTargets {
     // The deployment targets we support for the given set of platforms
-    public static func currencyConverterDeploymentTargets(for platforms: Set<Platform>) -> DeploymentTargets {
+    static func currencyConverterDeploymentTargets(for platforms: Set<Platform>) -> DeploymentTargets {
         var iOS: String? = nil
         var watchOS: String? = nil
         var visionOS: String? = nil

@@ -14,15 +14,15 @@ extension String {
 
     /// A "PascalCase" representation of the string
     var pascalCased: String {
-        return self.lowercased()
+        return lowercased()
             .split(separator: " ")
-            .map { return $0.lowercased().capitalizingFirstLetter() }
+            .map { $0.lowercased().capitalizingFirstLetter() }
             .joined()
     }
 
     /// A "camelCase" representation of the string
     var camelCased: String {
-        let upperCased = self.pascalCased
+        let upperCased = pascalCased
         return upperCased.prefix(1).lowercased() + upperCased.dropFirst()
     }
 }

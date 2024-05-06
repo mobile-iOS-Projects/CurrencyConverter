@@ -9,6 +9,7 @@ import Foundation
 
 public protocol HomeAPI {
     // TODO: - test
-
     func test()
+
+    func test2()
 }

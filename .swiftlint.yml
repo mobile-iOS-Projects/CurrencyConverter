@@ -1,0 +1,58 @@
+excluded:
+  - "**/*/Project.swift" # exclude tuist project manifest files
+  - "Workspace.swift" # exclude tuist workspace manifest file
+  - "Tuist/"
+  - ".tuist-bin/"
+  - "admin/cli/"
+
+only_rules:
+  - discouraged_optional_boolean
+  - empty_count
+  - force_unwrapping
+  - force_try
+  - force_cast
+  - identifier_name
+  - empty_string
+  - implicitly_unwrapped_optional
+  - operator_usage_whitespace
+  - custom_rules
+
+force_cast:
+  severity: warning # implicitly
+force_try:
+  severity: warning # explicitly
+empty_count:
+  severity: error
+empty_string:
+  severity: error
+force_unwrapping:
+  severity: error
+implicitly_unwrapped_optional:
+  severity: error
+operator_usage_whitespace:
+  severity: error
+
+identifier_name:
+  excluded:
+    - at
+    - d
+    - id
+    - Id
+    - z
+    - x
+    - y
+    - on
+    - vc
+  allowed_symbols:
+    - _
+
+custom_rules:
+  disable_print:
+    included: ".*\\.swift"
+    name: "print usage"
+    regex: "((\\bprint)|(Swift\\.print))\\s*\\("
+    message: "Use Logger over print"
+    severity: warning
+
+# Allows for 0 lintable files, e.g. all files to lint match exclusion rules
+allow_zero_lintable_files: true

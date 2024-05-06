@@ -23,6 +23,7 @@ public enum MicroFeatureType {
 }
 
 // MARK: - MicroFeatureTarget
+
 public struct MicroFeatureTarget {
     let type: MicroFeatureTargetType
     let dependencies: [TargetDependency]
@@ -56,6 +57,7 @@ public struct MicroFeatureTarget {
 }
 
 // MARK: Hashable
+
 extension MicroFeatureTarget: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(type)
@@ -63,6 +65,7 @@ extension MicroFeatureTarget: Hashable {
 }
 
 // MARK: - MicroFeatureTargetType
+
 /// Type of microfeature project targets within a micro feature
 public enum MicroFeatureTargetType {
     /// Interfaces and data model of the feature which can be consumed by other features
@@ -82,12 +85,13 @@ public enum MicroFeatureTargetType {
 }
 
 // MARK: -  Set Extension
+
 extension Set<MicroFeatureTarget> {
     /// Validates the given set of `MicroFeatureTargetType`s based on the MicroFeature guidelines
     /// - Returns: A ValidationResult
     func validate() -> ValidationResult {
         let containsInterface = self.containsInterface
-        let containsTests = self.containsTest
+        let containsTests = containsTest
         let containsImplementation = self.containsImplementation
         let containsTestSupporting = self.containsTestSupporting
         let containsExample = self.containsExample
@@ -104,7 +108,7 @@ extension Set<MicroFeatureTarget> {
             return .failed(reason: "If example app is implemented, implementations needs to be available too")
         }
 
-        if let exampleTarget = self.exampleTarget {
+        if let exampleTarget = exampleTarget {
             if exampleTarget.dependencies.contains(.xctest)
                 || testSupportingTarget?.dependencies.contains(.xctest) ?? false
                 || implementationTarget?.dependencies.contains(.xctest) ?? false
@@ -117,47 +121,47 @@ extension Set<MicroFeatureTarget> {
 
     /// Interface target, if present
     var interfaceTarget: MicroFeatureTarget? {
-        self.first { $0.type == .interface }
+        first { $0.type == .interface }
     }
 
     /// Implementatiom target, if present
     var implementationTarget: MicroFeatureTarget? {
-        self.first { $0.type == .implementation }
+        first { $0.type == .implementation }
     }
 
     /// Test target, if present
     var testsTarget: MicroFeatureTarget? {
-        self.first { $0.type == .tests }
+        first { $0.type == .tests }
     }
 
     /// Test supporting target, if present
     var testSupportingTarget: MicroFeatureTarget? {
-        self.first { $0.type == .testSupporting }
+        first { $0.type == .testSupporting }
     }
 
     /// Example app target, if present
     var exampleTarget: MicroFeatureTarget? {
-        self.first { $0.type == .example }
+        first { $0.type == .example }
     }
 
     var containsInterface: Bool {
-        self.interfaceTarget != nil
+        interfaceTarget != nil
     }
 
     var containsImplementation: Bool {
-        self.implementationTarget != nil
+        implementationTarget != nil
     }
 
     var containsTest: Bool {
-        self.testsTarget != nil
+        testsTarget != nil
     }
 
     var containsTestSupporting: Bool {
-        self.testSupportingTarget != nil
+        testSupportingTarget != nil
     }
 
     var containsExample: Bool {
-        self.exampleTarget != nil
+        exampleTarget != nil
     }
 }
 

@@ -8,13 +8,14 @@
 import ProjectDescription
 
 // MARK: - swiftformat
-extension TargetScript {
+
+public extension TargetScript {
     /// Create a `.post` script action for swiftformat based on the current feature type
     ///
     /// - Parameters
     ///   - featureType: The type of feature for which the swiftformat script should be added
     /// - Returns: A `.post` TargetScript
-    public static func swiftformatScript(
+    static func swiftformatScript(
         for _: MicroFeatureType,
         on featureTargetType: MicroFeatureTargetType
     ) -> TargetScript {
@@ -44,7 +45,7 @@ extension TargetScript {
     /// - Parameters
     ///   - sourcesPath: The path to the sources from the current working directory
     /// - Returns: A `.post` TargetScript
-    public static func swiftformatScript(sourcesPath: String) -> TargetScript {
+    static func swiftformatScript(sourcesPath: String) -> TargetScript {
         return .post(
             path: .relativeToRoot("Scripts/swiftformat.sh"),
             arguments: [
@@ -57,13 +58,14 @@ extension TargetScript {
 }
 
 // MARK: - Swiftlint
-extension TargetScript {
+
+public extension TargetScript {
     /// Create a `.post` script action for SwiftLint based on the current feature type
     ///
     /// - Parameters
     ///   - featureType: The type of feature for which the SwiftLint script should be added
     /// - Returns: A `.post` TargetScript
-    public static func swiftLintScript(
+    static func swiftLintScript(
         for _: MicroFeatureType,
         on featureTargetType: MicroFeatureTargetType
     ) -> TargetScript {
@@ -94,7 +96,7 @@ extension TargetScript {
     ///   - configPath: The path to the configuration file of swiftlint from the working directory of the current manifest file
     ///   - sourcesPath: The path to the sources from the current working directory
     /// - Returns: A `.post` TargetScript
-    public static func swiftLintScript(sourcesPath: String) -> TargetScript {
+    static func swiftLintScript(sourcesPath: String) -> TargetScript {
         return .post(
             path: .relativeToRoot("Scripts/swiftlint.sh"),
             arguments: [
@@ -107,13 +109,14 @@ extension TargetScript {
 }
 
 // MARK: - Highlight Todo
-extension TargetScript {
+
+public extension TargetScript {
     /// Create a `.pre` script action for highlighting todos in Xcode
     ///
     /// - Parameters
     ///   - featureType: The type of feature for which the Highlight todo script should be added
     /// - Returns: A `.post` TargetScript
-    public static func highlightTodosScript(
+    static func highlightTodosScript(
         for _: MicroFeatureType,
         on featureTargetType: MicroFeatureTargetType
     ) -> TargetScript {
@@ -143,7 +146,7 @@ extension TargetScript {
     /// - Parameters:
     ///   - sourcesPath: The path to the sources from the current working directory
     /// - Returns: A `.pre` TargetScript
-    public static func highlightTodosScript(sourcesPath: String) -> TargetScript {
+    static func highlightTodosScript(sourcesPath: String) -> TargetScript {
         return .pre(
             path: .relativeToRoot("Scripts/highlight_todos.sh"),
             arguments: [

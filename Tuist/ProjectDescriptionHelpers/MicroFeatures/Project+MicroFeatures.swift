@@ -8,7 +8,7 @@
 import Foundation
 import ProjectDescription
 
-extension Project {
+public extension Project {
     /// Generate a project that conforms the MicroFeature guidelines
     ///
     /// - Parameters:
@@ -27,7 +27,7 @@ extension Project {
     ///   - shouldSupportAppExtensions: Flag to tell the generator that `Interface` and `Implementation` targets of this feature
     /// support app extension API
     /// - Returns: A project that conforms to the MicroFeature guidelines
-    public static func microFeatureProject(
+    static func microFeatureProject(
         name: String,
         type: MicroFeatureType,
         targets: Set<MicroFeatureTarget>,
@@ -56,7 +56,7 @@ extension Project {
         }
 
         // Directory name validation
-        let manifestPathURL: URL = URL(fileURLWithPath: String(file))
+        let manifestPathURL = URL(fileURLWithPath: String(file))
         if manifestPathURL.deletingLastPathComponent().lastPathComponent != name {
             fatalError(
                 "\n\nPlease name your feature directory exactly the same like your features project name \(name) != \(manifestPathURL.deletingLastPathComponent().lastPathComponent)\n"
@@ -80,7 +80,7 @@ extension Project {
             settings: SettingsDictionary(),
             xcconfig: .relativeToRoot("Shared/Configurations/FeatureFlagsDevelopment.xcconfig")
         )
-        
+
         let enterpriseConfiguration: Configuration = .release(
             name: "Enterprise",
             settings: SettingsDictionary(),
@@ -88,6 +88,7 @@ extension Project {
         )
 
         // MARK: - Interface Target
+
         if let interfaceTarget = targets.interfaceTarget {
             // Create an interface target for each platform specified
             let interfaceTarget: Target = .target(
@@ -121,6 +122,7 @@ extension Project {
         }
 
         // MARK: - Implementation Target
+
         if let implementationTarget = targets.implementationTarget {
             // Create an implementation target for each platform specified
             let implementationTarget: Target = .target(
@@ -160,6 +162,7 @@ extension Project {
         }
 
         // MARK: - Tests Target
+
         if let testsTarget = targets.testsTarget {
             let testTarget: Target = .target(
                 name: "\(projectName)Tests",
@@ -193,6 +196,7 @@ extension Project {
         }
 
         // MARK: - TestSupporting target
+
         if let testSupportingTarget = targets.testSupportingTarget {
             // Create an test supporting target for each platform specified
             let testSupportingTarget: Target = .target(
@@ -209,7 +213,7 @@ extension Project {
                     .swiftformatScript(for: type, on: .testSupporting),
                     .swiftLintScript(for: type, on: .testSupporting),
                     .highlightTodosScript(for: type, on: .testSupporting)
-                ] + testSupportingTarget.scripts : [],                dependencies: [
+                ] + testSupportingTarget.scripts : [], dependencies: [
                     testSupportingTarget.dependencies,
                     targets.containsInterface ? [.target(name: "\(projectName)API")] : [],
                 ].joined(),
@@ -228,6 +232,7 @@ extension Project {
         }
 
         // MARK: - Example iOS target
+
         if let exampleTarget = targets.exampleTarget {
             let exampleTargetBaseSettings: [String: SettingValue] = [
                 "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_IOS_APP)",
@@ -276,6 +281,7 @@ extension Project {
         }
 
         // MARK: - Custom Targets
+
         projectTargets.append(contentsOf: additionalTargets)
 
         // MARK: - Post Processing
@@ -331,6 +337,7 @@ extension Project {
         }
 
         // MARK: - Project Scheme
+
         let microFeatureScheme: Scheme = .scheme(
             name: "\(projectName)",
             shared: true,
@@ -354,12 +361,14 @@ extension Project {
         )
 
         // MARK: - Project Settings
+
         let baseProjectSettings = SettingsDictionary()
             .bitcodeEnabled(false)
             .swiftCompilationMode(.wholemodule)
             .supportsMacCatalyst(false)
 
         // MARK: - Project Initialization
+
         return Project(
             name: projectName,
             options: .options(
