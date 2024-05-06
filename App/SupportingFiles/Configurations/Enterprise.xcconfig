@@ -1,0 +1,21 @@
+#include "../../../Shared/Configurations/FeatureFlagsEnterprise.xcconfig"
+
+CODE_SIGN_IDENTITY = iPhone Distribution
+DEVELOPMENT_TEAM = F32H42MUN7
+CODE_SIGN_STYLE = Manual
+
+// iOS App
+APP_BUNDLE_ID_MAIN = com.sap.mobile.apps.SAPStart.m12n
+PROVISIONING_PROFILE_SPECIFIER_MAIN = match InHouse $(APP_BUNDLE_ID_MAIN)
+
+
+// Used within entitlements for com.apple.security.application-groups and Info.plist for App_Group_Id key
+APP_GROUP_ID = group.$(APP_BUNDLE_ID_MAIN)
+
+// App Version
+MARKETING_VERSION = 1.12.0
+
+// Strip debug symbols from binary
+COPY_PHASE_STRIP = YES
+STRIP_INSTALLED_PRODUCT = YES
+DEPLOYMENT_POSTPROCESSING = YES

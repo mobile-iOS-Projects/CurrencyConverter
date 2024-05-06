@@ -80,6 +80,12 @@ extension Project {
             settings: SettingsDictionary(),
             xcconfig: .relativeToRoot("Shared/Configurations/FeatureFlagsDevelopment.xcconfig")
         )
+        
+        let enterpriseConfiguration: Configuration = .release(
+            name: "Enterprise",
+            settings: SettingsDictionary(),
+            xcconfig: .relativeToRoot("Shared/Configurations/FeatureFlagsEnterprise.xcconfig")
+        )
 
         // MARK: - Interface Target
         if let interfaceTarget = targets.interfaceTarget {
@@ -94,11 +100,14 @@ extension Project {
                 infoPlist: .default,
                 sources: ["Interface/Sources/**/*.swift"],
                 resources: ["Interface/Resources/**/*"],
-                scripts: [],
+                scripts: Environment.isScriptsIncluded() ? [
+                    .swiftLintScript(for: type, on: .interface),
+                    .highlightTodosScript(for: type, on: .interface),
+                ] + interfaceTarget.scripts : [],
                 dependencies: interfaceTarget.dependencies,
                 settings: .settings(
                     base: frameworkBaseSettings.applicationExtensionAPIOnly(shouldSupportAppExtensions),
-                    configurations: [developmentConfiguration],
+                    configurations: [developmentConfiguration, enterpriseConfiguration],
                     defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
                 )
             )
@@ -126,7 +135,10 @@ extension Project {
                     .glob("Implementation/Resources/**/*.intentdefinition", codeGen: .public),
                 ],
                 resources: ["Implementation/Resources/**/*"],
-                scripts: [],
+                scripts: Environment.isScriptsIncluded() ? [
+                    .swiftLintScript(for: type, on: .implementation),
+                    .highlightTodosScript(for: type, on: .implementation)
+                ] + implementationTarget.scripts : [],
                 dependencies: [
                     implementationTarget.dependencies,
                     targets.containsInterface ? [.target(name: "\(projectName)API")] : [],
@@ -156,13 +168,15 @@ extension Project {
                 infoPlist: .default,
                 sources: ["Tests/Sources/**/*.swift"],
                 resources: ["Tests/Resources/**/*"],
-                scripts: [],
+                scripts: Environment.isScriptsIncluded() ? [
+                    .swiftLintScript(for: type, on: .tests),
+                    .highlightTodosScript(for: type, on: .tests)
+                ] + testsTarget.scripts : [],
                 dependencies: [
                     testsTarget.dependencies,
                     [.target(name: "\(projectName)")],
                     [
                         .xctest,
-                        .project(target: "SMSCoreTest", path: .relativeToRoot("Features/Foundation/SMSCoreTest")),
                     ],
                     targets.containsTestSupporting ? [.target(name: "\(projectName)TestSupporting")] : [],
                 ].joined()
@@ -188,14 +202,16 @@ extension Project {
                 infoPlist: .default,
                 sources: ["TestSupporting/Sources/**/*.swift"],
                 resources: ["TestSupporting/Resources/**/*"],
-                scripts: [],
-                dependencies: [
+                scripts: Environment.isScriptsIncluded() ? [
+                    .swiftLintScript(for: type, on: .testSupporting),
+                    .highlightTodosScript(for: type, on: .testSupporting)
+                ] + testSupportingTarget.scripts : [],                dependencies: [
                     testSupportingTarget.dependencies,
                     targets.containsInterface ? [.target(name: "\(projectName)API")] : [],
                 ].joined(),
                 settings: .settings(
                     base: frameworkBaseSettings,
-                    configurations: [developmentConfiguration],
+                    configurations: [developmentConfiguration, enterpriseConfiguration],
                     defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
                 )
             )
@@ -236,7 +252,10 @@ extension Project {
                     sources: ["Example/Sources/**/*.swift"],
                     resources: ["Example/Resources/**/*"],
                     entitlements: .file(path: "Example/SupportingFiles/ExampleApp.entitlements"),
-                    scripts: [],
+                    scripts: Environment.isScriptsIncluded() ? [
+                        .swiftLintScript(for: type, on: .example),
+                        .highlightTodosScript(for: type, on: .example)
+                    ] + exampleTarget.scripts : [],
                     dependencies: [
                         [.target(name: projectName)],
                         targets.containsTestSupporting ? [.target(name: "\(projectName)TestSupporting")] : [],
@@ -348,7 +367,7 @@ extension Project {
             ),
             settings: .settings(
                 base: baseProjectSettings,
-                configurations: [developmentConfiguration],
+                configurations: [developmentConfiguration, enterpriseConfiguration],
                 defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
             ),
             targets: projectTargets,

@@ -1,0 +1,7 @@
+IOS_FLAGS = SMS_DEBUG_MENU_ENABLED
+
+// iOS, watchOS flags
+SWIFT_ACTIVE_COMPILATION_CONDITIONS = $(IOS_FLAGS)
+
+// Used within entitlements for com.apple.security.application-groups and Info.plist for App_Group_Id key
+APP_GROUP_ID = group.com.sap.mobile.apps.SAPStart.m12n

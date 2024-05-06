@@ -1,16 +1,12 @@
 //
-//  HomeAPI.swift
-//  HomeAPI
+//  NetworkingAPI.swift
+//  NetworkingAPI
 //
 //  Created by Sergey Runovich on 6.05.24.
 //
 
 import Foundation
 
-public protocol HomeAPI {
-    // TODO: - test
-
+public protocol NetworkingAPI {
     func test()
-    
-    
 }

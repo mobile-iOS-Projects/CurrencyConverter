@@ -1,13 +1,13 @@
 //
-//  HomeScreen.swift
-//  HomeAPI
+//  Networking.swift
+//  Networking
 //
 //  Created by Sergey Runovich on 6.05.24.
 //
 
-import HomeAPI
+import NetworkingAPI
 
-class HomeScreen: HomeAPI {
+class Networking: NetworkingAPI {
     func test() {
         print("test")
     }

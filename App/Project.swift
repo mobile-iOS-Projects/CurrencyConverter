@@ -3,6 +3,15 @@ import ProjectDescriptionHelpers
 
 let moduleBaseId = "\(workspaceBaseId)"
 
+// MARK: - Scripts
+let swiftlintScript: TargetScript = .swiftLintScript(
+    sourcesPath: "$SRCROOT/Sources"
+)
+
+let highlightTodosScript: TargetScript = .highlightTodosScript(
+    sourcesPath: "$SRCROOT/Sources"
+)
+
 // MARK: - iOS
 let iOSBaseSettings: [String: SettingValue] = [
     "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)",
@@ -10,6 +19,11 @@ let iOSBaseSettings: [String: SettingValue] = [
 
 let developmentConfiguration: Configuration = .debug(
     name: "Development",
+    settings: iOSBaseSettings
+)
+
+let enterpriseConfiguration: Configuration = .release(
+    name: "Enterprise",
     settings: iOSBaseSettings
 )
 
@@ -29,7 +43,7 @@ let appTarget: Target = .target(
         "Sources/**/*.swift",
     ],
     resources: ["Resources/**/*"],
-    scripts: [],
+    scripts: Environment.isScriptsIncluded() ? [swiftlintScript, highlightTodosScript] : [],
     dependencies: [
         .project(target: "Home", path: .relativeToRoot("Features/Home")),
     ],
@@ -50,7 +64,7 @@ let appScheme: Scheme = .scheme(
         options: .options(coverage: true, codeCoverageTargets: ["App"])
     ),
     runAction: .runAction(configuration: "Development", executable: "App"),
-    archiveAction: .archiveAction(configuration: .configuration("Development"))
+    archiveAction: .archiveAction(configuration: .configuration("Enterprise"))
 )
 
 let project = Project(
@@ -67,6 +81,11 @@ let project = Project(
             name: "Development",
             settings: [:],
             xcconfig: .relativeToManifest("SupportingFiles/Configurations/Development.xcconfig")
+        ),
+        .release(
+            name: "Enterprise",
+            settings: [:],
+            xcconfig: .relativeToManifest("SupportingFiles/Configurations/Enterprise.xcconfig")
         ),
     ]),
     targets: [
