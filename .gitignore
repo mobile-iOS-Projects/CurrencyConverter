@@ -62,6 +62,9 @@ DerivedData/
 *.xcodeproj
 *.xcworkspace
 
+### macOS ###
+.DS_Store
+
 ### Tuist derived files ###
 graph.dot
 Derived/
