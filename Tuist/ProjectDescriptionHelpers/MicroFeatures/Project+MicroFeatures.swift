@@ -102,6 +102,7 @@ public extension Project {
                 sources: ["Interface/Sources/**/*.swift"],
                 resources: ["Interface/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .precommitScript(for: type, on: .interface),
                     .swiftLintScript(for: type, on: .interface),
                     .highlightTodosScript(for: type, on: .interface),
                 ] + interfaceTarget.scripts : [],
@@ -138,6 +139,7 @@ public extension Project {
                 ],
                 resources: ["Implementation/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .precommitScript(for: type, on: .implementation),
                     .swiftLintScript(for: type, on: .implementation),
                     .highlightTodosScript(for: type, on: .implementation)
                 ] + implementationTarget.scripts : [],
@@ -172,6 +174,7 @@ public extension Project {
                 sources: ["Tests/Sources/**/*.swift"],
                 resources: ["Tests/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .precommitScript(for: type, on: .tests),
                     .swiftLintScript(for: type, on: .tests),
                     .highlightTodosScript(for: type, on: .tests)
                 ] + testsTarget.scripts : [],
@@ -207,6 +210,7 @@ public extension Project {
                 sources: ["TestSupporting/Sources/**/*.swift"],
                 resources: ["TestSupporting/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .precommitScript(for: type, on: .testSupporting),
                     .swiftLintScript(for: type, on: .testSupporting),
                     .highlightTodosScript(for: type, on: .testSupporting)
                 ] + testSupportingTarget.scripts : [], dependencies: [
@@ -258,6 +262,7 @@ public extension Project {
                     resources: ["Example/Resources/**/*"],
                     entitlements: .file(path: "Example/SupportingFiles/ExampleApp.entitlements"),
                     scripts: Environment.isScriptsIncluded() ? [
+                        .precommitScript(for: type, on: .example),
                         .swiftLintScript(for: type, on: .example),
                         .highlightTodosScript(for: type, on: .example)
                     ] + exampleTarget.scripts : [],

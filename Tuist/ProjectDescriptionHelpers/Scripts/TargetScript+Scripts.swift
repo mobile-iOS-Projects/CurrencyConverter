@@ -7,6 +7,56 @@
 
 import ProjectDescription
 
+// MARK: - pre-commit
+
+public extension TargetScript {
+    /// Create a `.post` script action for pre-commit based on the current feature type
+    ///
+    /// - Parameters
+    ///   - featureType: The type of feature for which the  pre-commit script should be added
+    /// - Returns: A `.post` TargetScript
+    static func precommitScript(
+        for _: MicroFeatureType,
+        on featureTargetType: MicroFeatureTargetType
+    ) -> TargetScript {
+        var precommitSourcesPath: String? = switch featureTargetType {
+        case .interface:
+            "$SRCROOT/Interface"
+        case .implementation:
+            "$SRCROOT/Implementation"
+        case .tests:
+            "$SRCROOT/Tests"
+        case .testSupporting:
+            "$SRCROOT/TestSupporting"
+        case .example:
+            "$SRCROOT/Example"
+        }
+
+        // Sanity check
+        guard let precommitSourcesPath else {
+            fatalError("SwiftFormat sources path could not be determined")
+        }
+
+        return .precommitScript(sourcesPath: precommitSourcesPath)
+    }
+
+    /// Create a `.post` script action for swiftformat
+    ///
+    /// - Parameters
+    ///   - sourcesPath: The path to the sources from the current working directory
+    /// - Returns: A `.post` TargetScript
+    static func precommitScript(sourcesPath: String) -> TargetScript {
+        return .post(
+            path: .relativeToRoot("Scripts/pre-commit.sh"),
+            arguments: [
+                sourcesPath, // the sources to lint (the sources of the target to which this script is added)
+            ],
+            name: "PreCommit",
+            basedOnDependencyAnalysis: false // Run script everytime
+        )
+    }
+}
+
 // MARK: - Swiftlint
 
 public extension TargetScript {
