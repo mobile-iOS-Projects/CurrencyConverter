@@ -12,6 +12,7 @@ class HomeScreen: HomeAPI {
     func test2() {
         print("test")
         
+        
     }
 
     func test() {
