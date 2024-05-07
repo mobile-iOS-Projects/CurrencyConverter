@@ -10,17 +10,8 @@ import HomeAPI
 
 class HomeScreen: HomeAPI {
     func test2() {
-        print("test")
-        
-        
     }
 
-    
-    
     func test() {
-        print("test")
     }
-    
-    
-    
 }
