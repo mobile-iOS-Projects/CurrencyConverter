@@ -81,12 +81,6 @@ public extension Project {
             xcconfig: .relativeToRoot("Shared/Configurations/FeatureFlagsDevelopment.xcconfig")
         )
 
-        let enterpriseConfiguration: Configuration = .release(
-            name: "Enterprise",
-            settings: SettingsDictionary(),
-            xcconfig: .relativeToRoot("Shared/Configurations/FeatureFlagsEnterprise.xcconfig")
-        )
-
         // MARK: - Interface Target
 
         if let interfaceTarget = targets.interfaceTarget {
@@ -108,7 +102,7 @@ public extension Project {
                 dependencies: interfaceTarget.dependencies,
                 settings: .settings(
                     base: frameworkBaseSettings.applicationExtensionAPIOnly(shouldSupportAppExtensions),
-                    configurations: [developmentConfiguration, enterpriseConfiguration],
+                    configurations: [developmentConfiguration],
                     defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
                 )
             )
@@ -215,7 +209,7 @@ public extension Project {
                 ].joined(),
                 settings: .settings(
                     base: frameworkBaseSettings,
-                    configurations: [developmentConfiguration, enterpriseConfiguration],
+                    configurations: [developmentConfiguration],
                     defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
                 )
             )
@@ -240,12 +234,6 @@ public extension Project {
                 xcconfig: .relativeToManifest("Example/SupportingFiles/Configurations/Development.xcconfig")
             )
 
-            let enterpriseConfiguration: Configuration = .release(
-                name: "Enterprise",
-                settings: exampleTargetBaseSettings,
-                xcconfig: .relativeToManifest("Example/SupportingFiles/Configurations/Enterprise.xcconfig")
-            )
-
             projectTargets.append(
                 .target(
                     name: "\(projectName)Example",
@@ -267,7 +255,7 @@ public extension Project {
                         exampleTarget.dependencies,
                     ].joined(),
                     settings: .settings(
-                        configurations: [developmentConfiguration, enterpriseConfiguration],
+                        configurations: [developmentConfiguration],
                         defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
                     )
                 )
@@ -376,7 +364,7 @@ public extension Project {
             ),
             settings: .settings(
                 base: baseProjectSettings,
-                configurations: [developmentConfiguration, enterpriseConfiguration],
+                configurations: [developmentConfiguration],
                 defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS"])
             ),
             targets: projectTargets,

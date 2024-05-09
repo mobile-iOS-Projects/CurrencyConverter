@@ -8,7 +8,7 @@
 import ProjectDescription
 
 /// The base bundle id for all products in this workspace - can be accessed by any `Project.swift` file
-public let workspaceBaseId = "com.ios.mobile.apps.CurrencyConverter"
+public let workspaceBaseId = "com.currency.converter.mobile.apps"
 
 public extension Destinations {
     /// The destinations we support for the given set of platform

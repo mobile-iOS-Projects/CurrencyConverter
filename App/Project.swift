@@ -23,17 +23,12 @@ let developmentConfiguration: Configuration = .debug(
     settings: iOSBaseSettings
 )
 
-let enterpriseConfiguration: Configuration = .release(
-    name: "Enterprise",
-    settings: iOSBaseSettings
-)
-
 let appTarget: Target = .target(
     name: "App",
     destinations: .currencyConverterDestinations(for: [.iOS]),
     product: .app,
     productName: "CurrencyConverter",
-    bundleId: "$(APP_BUNDLE_ID_MAIN)",
+    bundleId: "com.currency.converter.mobile.apps",
     deploymentTargets: .currencyConverterDeploymentTargets(for: [.iOS]),
     infoPlist: .extendingDefault(
         with: [
@@ -82,11 +77,6 @@ let project = Project(
             name: "Development",
             settings: [:],
             xcconfig: .relativeToManifest("SupportingFiles/Configurations/Development.xcconfig")
-        ),
-        .release(
-            name: "Enterprise",
-            settings: [:],
-            xcconfig: .relativeToManifest("SupportingFiles/Configurations/Enterprise.xcconfig")
         ),
     ]),
     targets: [
