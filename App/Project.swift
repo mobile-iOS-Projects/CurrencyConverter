@@ -30,11 +30,7 @@ let appTarget: Target = .target(
     productName: "CurrencyConverter",
     bundleId: "com.currency.converter.mobile.apps",
     deploymentTargets: .currencyConverterDeploymentTargets(for: [.iOS]),
-    infoPlist: .extendingDefault(
-        with: [
-            "UILaunchStoryboardName": "LaunchScreen.storyboard",
-        ]
-    ),
+    infoPlist: .default,
     sources: [
         "Sources/**/*.swift",
     ],
