@@ -45,6 +45,24 @@ let appTarget: Target = .target(
     )
 )
 
+let appUnitTestTarget: Target = .target(
+    name: "AppUnitTests",
+    destinations: .currencyConverterDestinations(for: [.iOS]),
+    product: .unitTests,
+    bundleId: "\(moduleBaseId).tests",
+    deploymentTargets: .currencyConverterDeploymentTargets(for: [.iOS]),
+    infoPlist: .default,
+    sources: ["Tests/UnitTests/**/*.swift"],
+    scripts: Environment.isScriptsIncluded() ? [
+        .swiftLintScript(for: .app, on: .tests),
+        .highlightTodosScript(for: .app, on: .tests),
+    ] : [],
+    dependencies: [
+        .target(name: "App"),
+        .xctest,
+    ]
+)
+
 let appScheme: Scheme = .scheme(
     name: "CurrencyConverter",
     shared: true,
@@ -77,6 +95,7 @@ let project = Project(
     ]),
     targets: [
         appTarget,
+        appUnitTestTarget
     ],
     schemes: [
         appScheme,
