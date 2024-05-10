@@ -96,8 +96,8 @@
       buildConfiguration = "Development"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = "en"
       shouldUseLaunchSchemeArgsEnv = "YES"
+      language = "en"
       region = "US"
       codeCoverageEnabled = "YES">
       <Testables>
