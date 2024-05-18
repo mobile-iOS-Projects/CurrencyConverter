@@ -8,7 +8,9 @@ import PackageDescription
     let frameworkBaseSettings: [String: SettingValue] = .currencyConverterFrameworkBaseSettings()
 
     let packageSettings = PackageSettings(
-        productTypes: [:],
+        productTypes: [
+            "Factory": .framework
+        ],
         baseSettings: .settings(
             base: [:],
             configurations: [.debug(name: "Development")],
@@ -21,5 +23,6 @@ import PackageDescription
 let package = Package(
     name: "CurrencyConverterDependencies",
     dependencies: [
+        .package(url: "https://github.com/hmlongco/Factory", from: "2.3.2")
     ]
 )

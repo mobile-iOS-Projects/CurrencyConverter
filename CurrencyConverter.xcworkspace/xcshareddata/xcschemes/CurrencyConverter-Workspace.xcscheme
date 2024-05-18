@@ -42,6 +42,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "374966D1D7AB94212268A710"
+               BuildableName = "Factory.framework"
+               BlueprintName = "Factory"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Factory/Factory.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "52E844066D197E3B81FA748F"
                BuildableName = "Home.framework"
                BlueprintName = "Home"

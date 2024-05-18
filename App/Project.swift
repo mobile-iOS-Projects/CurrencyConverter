@@ -38,6 +38,7 @@ let appTarget: Target = .target(
     scripts: Environment.isScriptsIncluded() ? [swiftlintScript, highlightTodosScript] : [],
     dependencies: [
         .project(target: "Home", path: .relativeToRoot("Features/Home")),
+        .external(name: "Factory"),
     ],
     settings: .settings(
         configurations: [developmentConfiguration],
