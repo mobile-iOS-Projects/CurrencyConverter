@@ -36,7 +36,7 @@ extension Networking: NetworkingAPI {
                 throw NetworkingError.httpError(data: resourceResponse.data, response: response)
             }
 
-            return try JSONDecoder().decode(T.self, from: resourceResponse.data)
+            return try JSONDecoder().decode(responseModel, from: resourceResponse.data)
         } catch let error as NSError {
             guard error.domain == NSURLErrorDomain else { throw NetworkingError.unknown(error: error) }
             throw NetworkingError.urlError(code: error.code)

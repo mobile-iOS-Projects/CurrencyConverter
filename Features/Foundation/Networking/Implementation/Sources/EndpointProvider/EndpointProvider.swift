@@ -18,20 +18,20 @@ public protocol EndpointProvider {
     var mockFile: String? { get }
 }
 
-public extension EndpointProvider {
-    var scheme: String {
+extension EndpointProvider {
+    public var scheme: String {
         return "https"
     }
 
-    var baseURL: String {
+    public var baseURL: String {
         return "v6.exchangerate-api.com"
     }
 
-    var token: String {
+    public var token: String {
         return ""
     }
 
-    func asURLRequest() throws -> URLRequest {
+    public func asURLRequest() throws -> URLRequest {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = baseURL

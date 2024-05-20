@@ -7,6 +7,55 @@
 
 import ProjectDescription
 
+// MARK: - swiftformat
+extension TargetScript {
+    /// Create a `.post` script action for swiftformat based on the current feature type
+    ///
+    /// - Parameters
+    ///   - featureType: The type of feature for which the swiftformat script should be added
+    /// - Returns: A `.post` TargetScript
+    public static func swiftformatScript(
+        for _: MicroFeatureType,
+        on featureTargetType: MicroFeatureTargetType
+    ) -> TargetScript {
+        var swiftformatSourcesPath: String? = switch featureTargetType {
+        case .interface:
+            "$SRCROOT/Interface"
+        case .implementation:
+            "$SRCROOT/Implementation"
+        case .tests:
+            "$SRCROOT/Tests"
+        case .testSupporting:
+            "$SRCROOT/TestSupporting"
+        case .example:
+            "$SRCROOT/Example"
+        }
+
+        // Sanity check
+        guard let swiftformatSourcesPath else {
+            fatalError("SwiftFormat sources path could not be determined")
+        }
+
+        return .swiftformatScript(sourcesPath: swiftformatSourcesPath)
+    }
+
+    /// Create a `.post` script action for swiftformat
+    ///
+    /// - Parameters
+    ///   - sourcesPath: The path to the sources from the current working directory
+    /// - Returns: A `.post` TargetScript
+    public static func swiftformatScript(sourcesPath: String) -> TargetScript {
+        return .post(
+            path: .relativeToRoot("Scripts/swiftformat.sh"),
+            arguments: [
+                sourcesPath, // the sources to lint (the sources of the target to which this script is added)
+            ],
+            name: "[SAP] SwiftFormat",
+            basedOnDependencyAnalysis: false // Run script everytime
+        )
+    }
+}
+
 // MARK: - Swiftlint
 
 public extension TargetScript {

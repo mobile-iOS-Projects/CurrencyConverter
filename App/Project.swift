@@ -4,6 +4,10 @@ import ProjectDescriptionHelpers
 let moduleBaseId = "\(workspaceBaseId)"
 
 // MARK: - Scripts
+let swiftformatScript: TargetScript = .swiftformatScript(
+    sourcesPath: "$SRCROOT/Sources"
+)
+
 let swiftlintScript: TargetScript = .swiftLintScript(
     sourcesPath: "$SRCROOT/Sources"
 )
@@ -35,7 +39,7 @@ let appTarget: Target = .target(
         "Sources/**/*.swift",
     ],
     resources: ["Resources/**/*"],
-    scripts: Environment.isScriptsIncluded() ? [swiftlintScript, highlightTodosScript] : [],
+    scripts: Environment.isScriptsIncluded() ? [swiftformatScript, swiftlintScript, highlightTodosScript] : [],
     dependencies: [
         .project(target: "Home", path: .relativeToRoot("Features/Home")),
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
@@ -57,6 +61,7 @@ let appUnitTestTarget: Target = .target(
     infoPlist: .default,
     sources: ["Tests/UnitTests/**/*.swift"],
     scripts: Environment.isScriptsIncluded() ? [
+        .swiftformatScript(for: .app, on: .tests),
         .swiftLintScript(for: .app, on: .tests),
         .highlightTodosScript(for: .app, on: .tests),
     ] : [],

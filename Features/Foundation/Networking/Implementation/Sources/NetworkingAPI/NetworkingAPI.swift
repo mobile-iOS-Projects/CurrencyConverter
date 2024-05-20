@@ -13,7 +13,7 @@ public protocol NetworkingAPI {
     /// the response into the provided model type.
     ///
     /// - Parameters:
-    ///   - endpoint: The endpoint to which the GET request should be made, 
+    ///   - endpoint: The endpoint to which the GET request should be made,
     ///   conforming to the `EndpointProvider` protocol.
     ///   - responseModel: The type of the model that the response should be decoded into.
     ///    This type must conform to the `Decodable` protocol.

@@ -80,9 +80,9 @@ extension NetworkingError: Equatable {
 }
 
 // MARK: - NetworkingError.ValidationError
-public extension NetworkingError {
+extension NetworkingError {
     /// Errors that occur during download validation
-    enum ValidationError: Error {
+    public enum ValidationError: Error {
         /// The file type does not match the file type from the ValidationConfiguration
         case invalidFileType
 

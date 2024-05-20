@@ -1,89 +1,56 @@
-# Directory and file filters
 excluded:
   - "**/*/Project.swift" # exclude tuist project manifest files
   - "Workspace.swift" # exclude tuist workspace manifest file
   - "Tuist/"
   - ".tuist-bin/"
-  - Tests/SwiftLintFrameworkTests/Resources
-  - "Features/Foundation/SMSCore/Implementation/Sources"
+  - "admin/cli/"
+  - "Features/Foundation/CDMRuntime/Implementation/Sources/Generated" # exclude CDMRuntime features generated files
+  - "Features/Foundation/CDMODataProxies/Implementation/Sources" # exclude CDMODataProxies features generated files
+  - "Features/InAppNotificationService/Implementation/Sources/Generated" # exclude Notifications features generated files
+  - "Features/InterestCardsService/Implementation/Sources/Generated" # exclude InterestCardsService features generated files
+  - "Features/Voice/Generated" # exclude Voice features generated files
 
-# Enabled/disabled rules
-analyzer_rules:
-  - unused_declaration
-  - unused_import
-opt_in_rules:
-  - all
-disabled_rules:
-  - anonymous_argument_in_multiline_closure
-  - anyobject_protocol
-  - closure_body_length
-  - conditional_returns_on_newline
-  - convenience_type
-  - discouraged_optional_collection
-  - explicit_acl
-  - explicit_enum_raw_value
-  - explicit_top_level_acl
-  - explicit_type_interface
-  - file_types_order
+only_rules:
+  - discouraged_optional_boolean
+  - empty_count
   - force_unwrapping
-  - function_default_parameter_at_end
-  - implicit_return
-  - indentation_width
-  - inert_defer
-  - missing_docs
-  - multiline_arguments
-  - multiline_arguments_brackets
-  - multiline_function_chains
-  - multiline_literal_brackets
-  - multiline_parameters
-  - multiline_parameters_brackets
-  - no_extension_access_modifier
-  - no_grouping_extension
-  - no_magic_numbers
-  - prefer_nimble
-  - prefer_self_in_static_references
-  - prefixed_toplevel_constant
-  - required_deinit
-  - sorted_enum_cases
-  - strict_fileprivate
-  - switch_case_on_newline
-  - todo
-  - trailing_closure
-  - type_contents_order
-  - unused_capture_list
-  - vertical_whitespace_between_cases
+  - force_try
+  - force_cast
+  - identifier_name
+  - empty_string
+  - implicitly_unwrapped_optional
+  - operator_usage_whitespace
+  - custom_rules
 
-# Configurations
-attributes:
-  always_on_line_above:
-    - "@ConfigurationElement"
-    - "@OptionGroup"
-    - "@RuleConfigurationDescriptionBuilder"
-balanced_xctest_lifecycle: &unit_test_configuration
-  test_parent_classes:
-    - SwiftLintTestCase
-    - XCTestCase
-empty_xctest_method: *unit_test_configuration
-file_name:
-  excluded:
-    - Exports.swift
-    - GeneratedTests.swift
-    - RuleConfigurationMacros.swift
-    - SwiftSyntax+SwiftLint.swift
-    - TestHelpers.swift
-function_body_length: 60
+force_cast:
+  severity: warning # implicitly
+force_try:
+  severity: warning # explicitly
+empty_count:
+  severity: error
+empty_string:
+  severity: error
+force_unwrapping:
+  severity: error
+implicitly_unwrapped_optional:
+  severity: error
+operator_usage_whitespace:
+  severity: error
+
 identifier_name:
   excluded:
+    - at
+    - d
     - id
-large_tuple: 3
-number_separator:
-  minimum_length: 5
-unused_import:
-  always_keep_imports:
-    - SwiftSyntaxBuilder # we can't detect uses of string interpolation of swift syntax nodes
-    - SwiftLintFramework # now that this is a wrapper around other modules, don't treat as unused
+    - Id
+    - z
+    - x
+    - y
+    - on
+    - vc
+  allowed_symbols:
+    - _
 
-# Custom rules
 custom_rules:
   disable_print:
     included: ".*\\.swift"
@@ -91,7 +58,6 @@ custom_rules:
     regex: "((\\bprint)|(Swift\\.print))\\s*\\("
     message: "Use Logger over print"
     severity: warning
-
 
 # Allows for 0 lintable files, e.g. all files to lint match exclusion rules
 allow_zero_lintable_files: true
