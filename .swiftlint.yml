@@ -3,12 +3,6 @@ excluded:
   - "Workspace.swift" # exclude tuist workspace manifest file
   - "Tuist/"
   - ".tuist-bin/"
-  - "admin/cli/"
-  - "Features/Foundation/CDMRuntime/Implementation/Sources/Generated" # exclude CDMRuntime features generated files
-  - "Features/Foundation/CDMODataProxies/Implementation/Sources" # exclude CDMODataProxies features generated files
-  - "Features/InAppNotificationService/Implementation/Sources/Generated" # exclude Notifications features generated files
-  - "Features/InterestCardsService/Implementation/Sources/Generated" # exclude InterestCardsService features generated files
-  - "Features/Voice/Generated" # exclude Voice features generated files
 
 only_rules:
   - discouraged_optional_boolean
