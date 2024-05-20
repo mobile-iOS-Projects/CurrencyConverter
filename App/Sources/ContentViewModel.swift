@@ -5,8 +5,8 @@
 //  Created by Siarhei Runovich on 18.05.24.
 //
 
-import Foundation
 import Factory
+import Foundation
 import Networking
 
 struct Currency: Decodable {
@@ -33,8 +33,7 @@ struct Currency: Decodable {
 @Observable
 final class ContentViewModel {
     @ObservationIgnored
-    @Injected (\.networkingAPI) var networkingAPI
-    
+    @Injected(\.networkingAPI) var networkingAPI
 }
 
 extension ContentViewModel {
@@ -43,11 +42,8 @@ extension ContentViewModel {
             do {
                 let enpoint = CurrencyEndpoints.getCurrencies
 
-                let result = try await networkingAPI.getRequest(endpoint: enpoint, responseModel: Currency.self)
-                print("result: \(result)")
-            } catch {
-                print("error: \(error.localizedDescription)")
-            }
+                _ = try await networkingAPI.getRequest(endpoint: enpoint, responseModel: Currency.self)
+            } catch {}
         }
     }
 }

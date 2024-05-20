@@ -10,7 +10,6 @@ public struct ContentView: View {
             .onAppear {
                 viewModel.getCurrency()
             }
-        
     }
 }
 

@@ -9,12 +9,12 @@ import XCTest
 
 final class CurrencyConverterTests: XCTestCase {
     func testSettingsDeepLink() {
-       let test = true
-       XCTAssertTrue(test)
+        let test = true
+        XCTAssertTrue(test)
     }
 
     func testNotificationsDeepLink() {
-       let test = true
-       XCTAssertTrue(test)
+        let test = true
+        XCTAssertTrue(test)
     }
 }

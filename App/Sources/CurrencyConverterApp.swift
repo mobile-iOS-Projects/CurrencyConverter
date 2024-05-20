@@ -1,6 +1,6 @@
-import SwiftUI
 import Factory
 import Networking
+import SwiftUI
 
 @main
 struct CurrencyConverterApp: App {

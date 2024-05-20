@@ -9,9 +9,7 @@ import Foundation
 import HomeAPI
 
 class HomeScreen: HomeAPI {
-    func test2() {
-    }
+    func test2() {}
 
-    func test() {
-    }
+    func test() {}
 }
