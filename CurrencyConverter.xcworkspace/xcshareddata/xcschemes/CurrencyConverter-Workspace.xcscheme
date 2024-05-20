@@ -98,10 +98,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "456209A97FD4586FF88E2792"
-               BuildableName = "NetworkingAPI.framework"
-               BlueprintName = "NetworkingAPI"
-               ReferencedContainer = "container:Features/Foundation/Networking/Networking.xcodeproj">
+               BlueprintIdentifier = "FFAFEC81D58CD287946D52A2"
+               BuildableName = "SMSCore.framework"
+               BlueprintName = "SMSCore"
+               ReferencedContainer = "container:Features/Foundation/SMSCore/SMSCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

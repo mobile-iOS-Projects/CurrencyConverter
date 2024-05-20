@@ -11,6 +11,7 @@ let productFeatures: [Path] = [
 
 let foundationFeatures: [Path] = [
     "Features/Foundation/Networking",
+    "Features/Foundation/SMSCore",
 ]
 
 let workspace = Workspace(

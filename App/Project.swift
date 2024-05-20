@@ -38,6 +38,8 @@ let appTarget: Target = .target(
     scripts: Environment.isScriptsIncluded() ? [swiftlintScript, highlightTodosScript] : [],
     dependencies: [
         .project(target: "Home", path: .relativeToRoot("Features/Home")),
+        .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
+        .project(target: "SMSCore", path: .relativeToRoot("Features/Foundation/SMSCore")),
         .external(name: "Factory"),
     ],
     settings: .settings(

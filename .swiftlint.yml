@@ -5,6 +5,7 @@ excluded:
   - "Tuist/"
   - ".tuist-bin/"
   - Tests/SwiftLintFrameworkTests/Resources
+  - "Features/Foundation/SMSCore/Implementation/Sources"
 
 # Enabled/disabled rules
 analyzer_rules:

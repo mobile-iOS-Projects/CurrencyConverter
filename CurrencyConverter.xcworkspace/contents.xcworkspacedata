@@ -16,6 +16,9 @@
          <FileRef
             location = "group:Networking/Networking.xcodeproj">
          </FileRef>
+         <FileRef
+            location = "group:SMSCore/SMSCore.xcodeproj">
+         </FileRef>
       </Group>
    </Group>
    <FileRef

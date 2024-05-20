@@ -1,4 +1,6 @@
 import SwiftUI
+import Factory
+import Networking
 
 @main
 struct CurrencyConverterApp: App {
@@ -6,5 +8,11 @@ struct CurrencyConverterApp: App {
         WindowGroup {
             ContentView()
         }
+    }
+}
+
+extension Container {
+    var networkingAPI: Factory<NetworkingAPI> {
+        self { Networking() }
     }
 }

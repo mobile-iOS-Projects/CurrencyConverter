@@ -8,7 +8,7 @@ import PackageDescription
     let frameworkBaseSettings: [String: SettingValue] = .currencyConverterFrameworkBaseSettings()
 
     let packageSettings = PackageSettings(
-        productTypes: [
+        productTypes: [ // Convert 3rd party frameworks into dynamic frameworks
             "Factory": .framework
         ],
         baseSettings: .settings(
@@ -16,13 +16,16 @@ import PackageDescription
             configurations: [.debug(name: "Development")],
             defaultSettings: .recommended
         ),
-        targetSettings: [:]
+        targetSettings: [
+            "Factory": frameworkBaseSettings.applicationExtensionAPIOnly(true),
+        ]
     )
 #endif
 
 let package = Package(
     name: "CurrencyConverterDependencies",
     dependencies: [
+        // true 3rd Party Dependencies
         .package(url: "https://github.com/hmlongco/Factory", from: "2.3.2")
     ]
 )

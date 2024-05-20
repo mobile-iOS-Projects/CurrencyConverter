@@ -1,15 +1,14 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
 
+// MARK: - Feature
 let project: Project = .microFeatureProject(
-    name: "Networking",
+    name: "SMSCore",
     type: .foundation,
     targets: [
         .implementation(
-            dependencies: [
-                .project(target: "SMSCore", path: .relativeToRoot("Features/Foundation/SMSCore")),
-            ]
         ),
     ],
-    platforms: [.iOS]
+    platforms: [.iOS],
+    disableTargetSetValidation: true
 )
