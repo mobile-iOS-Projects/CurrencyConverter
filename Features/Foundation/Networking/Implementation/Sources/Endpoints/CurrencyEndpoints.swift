@@ -13,26 +13,17 @@ public enum CurrencyEndpoints: EndpointProvider {
     public var path: String {
         switch self {
         case .getCurrencies:
-            return "/v6/330554763ea281d28c4f452f/latest/USD"
+            CurrencyAPIConstants.getCurrenciesPath
         }
+    }
+
+    public var baseURL: String {
+        CurrencyAPIConstants.baseURL
     }
 
     public var method: RequestMethod {
         switch self {
-        case .getCurrencies:
-            return .get
+        case .getCurrencies: .get
         }
-    }
-
-    public var queryItems: [URLQueryItem]? {
-        return nil
-    }
-
-    public var body: [String: Any]? {
-        return nil
-    }
-
-    public var mockFile: String? {
-        return nil
     }
 }
