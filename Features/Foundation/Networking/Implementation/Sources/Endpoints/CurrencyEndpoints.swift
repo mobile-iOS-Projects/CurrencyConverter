@@ -13,12 +13,12 @@ public enum CurrencyEndpoints: EndpointProvider {
     public var path: String {
         switch self {
         case .getCurrencies:
-            CurrencyAPIConstants.getCurrenciesPath
+            APIConstants.CurrencyAPIConstants.getCurrenciesPath
         }
     }
 
     public var baseURL: String {
-        CurrencyAPIConstants.baseURL
+        APIConstants.CurrencyAPIConstants.baseURL
     }
 
     public var method: RequestMethod {
