@@ -17,7 +17,13 @@
       location = "group:Features"
       name = "Features">
       <FileRef
-         location = "group:Home/Home.xcodeproj">
+         location = "group:Conversion/Conversion.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:News/News.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Settings/Settings.xcodeproj">
       </FileRef>
       <Group
          location = "group:Foundation"
@@ -27,6 +33,12 @@
          </FileRef>
          <FileRef
             location = "group:SMSCore/SMSCore.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:SMSCoreUI/SMSCoreUI.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:SwiftData/SwiftData.xcodeproj">
          </FileRef>
       </Group>
    </Group>

@@ -6,12 +6,16 @@ let executables: [Path] = [
 ]
 
 let productFeatures: [Path] = [
-    "Features/Home",
+    "Features/Conversion",
+    "Features/News",
+    "Features/Settings",
 ]
 
 let foundationFeatures: [Path] = [
     "Features/Foundation/Networking",
     "Features/Foundation/SMSCore",
+    "Features/Foundation/SMSCoreUI",
+    "Features/Foundation/SwiftData",
 ]
 
 let workspace = Workspace(

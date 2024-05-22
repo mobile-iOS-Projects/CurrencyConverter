@@ -41,9 +41,13 @@ let appTarget: Target = .target(
     resources: ["Resources/**/*"],
     scripts: Environment.isScriptsIncluded() ? [swiftformatScript, swiftlintScript, highlightTodosScript] : [],
     dependencies: [
-        .project(target: "Home", path: .relativeToRoot("Features/Home")),
+        .project(target: "Conversion", path: .relativeToRoot("Features/Conversion")),
+        .project(target: "News", path: .relativeToRoot("Features/News")),
+        .project(target: "Settings", path: .relativeToRoot("Features/Settings")),
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
         .project(target: "SMSCore", path: .relativeToRoot("Features/Foundation/SMSCore")),
+        .project(target: "SMSCoreUI", path: .relativeToRoot("Features/Foundation/SMSCoreUI")),
+        .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
         .external(name: "Factory"),
     ],
     settings: .settings(
