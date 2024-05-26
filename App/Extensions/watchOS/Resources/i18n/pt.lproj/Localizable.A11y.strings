@@ -1,0 +1,4 @@
+/* Localizable.strings\n Created by Steinmetz, Conrad on 01.13.23. */
+/* XACT: Accessibility Label for SAP Start Logo */
+"watch.log_out_view.icon.sap_start_logo.a11y_label" = "Logotipo do SAP Start";
+

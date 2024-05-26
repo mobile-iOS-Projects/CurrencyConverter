@@ -1,0 +1,31 @@
+/* Localizable.strings\n Created by Steinmetz, Conrad on 01.13.23. */
+"keyLoginTitle" = "[[[Ŝįğŋ Ĭŋ∙∙∙∙∙∙∙]]]";
+
+"keyLoginNeededMessage" = "[[[Ŝįğŋ įŋ ţŏ ŜĀƤ Μŏƃįĺē Ŝţąŗţ ŏŋ ŷŏűŗ ρĥŏŋē ţŏ űşē ţĥįş ąρρ ŏŋ ŷŏűŗ ŵąţċĥ.∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙]]]";
+
+"keyLoggedOutTitle" = "[[[Ŝįğŋēƌ Ŏűţ∙∙∙∙]]]";
+
+"keyWatchDisconnectedTooLongMessage" = "[[[Ɓŗįŋğ ŷŏűŗ ρĥŏŋē ŋēąŗ ŷŏűŗ ŵąţċĥ ţŏ şįğŋ įŋ ţŏ ŜĀƤ Μŏƃįĺē Ŝţąŗţ ąğąįŋ.∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙]]]";
+
+"keyAppDisabledTitle" = "[[[Āρρ Ďįşąƃĺēƌ∙∙∙∙∙∙∙]]]";
+
+"keyWatchFeatureFlagDisabledMessage" = "[[[Ŷŏűŗ ąƌɱįŋįşţŗąţŏŗ ĥąş ƌįşąƃĺēƌ ţĥįş ŵąţċĥ ąρρ ƒŏŗ ŷŏűŗ ċŏɱρąŋŷ.∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙∙]]]";
+
+/* Monitoring Tab */
+"keyMonitoringTabTitle" = "[[[Μŏŋįţŏŗįŋğ∙∙∙∙]]]";
+
+"keyEmptyListDisplayedMessage" = "[[[Ńŏ ąρρş ŷēţ∙∙∙∙∙∙∙∙]]]";
+
+"keyMonitoringTileNoAvailableTitlePlaceholder" = "[[[Ůŋķŋŏŵŋ∙∙∙∙∙∙∙]]]";
+
+"keyRetryAction" = "[[[Ţŗŷ Āğąįŋ∙∙∙∙∙]]]";
+
+"keyLoadingFailed" = "[[[Ļŏąƌįŋğ ƒąįĺēƌ∙∙∙∙∙]]]";
+
+"keyGenericLoadingErrorMessage" = "[[[Ŝŏɱēţĥįŋğ ŵēŋţ ŵŗŏŋğ.∙∙∙∙∙]]]";
+
+"keyNoInternetConnection" = "[[[Ƥĺēąşē ċĥēċķ ŷŏűŗ įŋţēŗŋēţ ċŏŋŋēċţįŏŋ.∙∙∙∙∙∙∙∙∙∙∙∙∙]]]";
+
+/* MARK: - Monitoring Details */
+"keyMonitoringDetailTitle" = "[[[Ďēţąįĺş∙∙∙∙∙∙∙]]]";
+

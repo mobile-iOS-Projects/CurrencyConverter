@@ -87,11 +87,11 @@ public extension Project {
             // Create an interface target for each platform specified
             let interfaceTarget: Target = .target(
                 name: "\(projectName)API",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .smsDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)API",
                 bundleId: "\(moduleBaseId).api",
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .smsDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["Interface/Sources/**/*.swift"],
                 resources: ["Interface/Resources/**/*"],
@@ -121,11 +121,11 @@ public extension Project {
             // Create an implementation target for each platform specified
             let implementationTarget: Target = .target(
                 name: "\(projectName)",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .smsDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)",
                 bundleId: moduleBaseId,
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .smsDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: [
                     "Implementation/Sources/**/*.swift",
@@ -160,10 +160,10 @@ public extension Project {
         if let testsTarget = targets.testsTarget {
             let testTarget: Target = .target(
                 name: "\(projectName)Tests",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .smsDestinations(for: platforms),
                 product: .unitTests,
                 bundleId: "\(moduleBaseId).tests",
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .smsDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["Tests/Sources/**/*.swift"],
                 resources: ["Tests/Resources/**/*"],
@@ -195,11 +195,11 @@ public extension Project {
             // Create an test supporting target for each platform specified
             let testSupportingTarget: Target = .target(
                 name: "\(projectName)TestSupporting",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .smsDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)TestSupporting",
                 bundleId: "\(moduleBaseId).testsupporting",
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .smsDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["TestSupporting/Sources/**/*.swift"],
                 resources: ["TestSupporting/Resources/**/*"],
@@ -241,10 +241,10 @@ public extension Project {
             projectTargets.append(
                 .target(
                     name: "\(projectName)Example",
-                    destinations: .currencyConverterDestinations(for: platforms.subtracting([.watchOS])),
+                    destinations: .smsDestinations(for: platforms.subtracting([.watchOS])),
                     product: .app,
                     bundleId: "\(moduleBaseId).example",
-                    deploymentTargets: .currencyConverterDeploymentTargets(for: platforms.subtracting([.watchOS])),
+                    deploymentTargets: .smsDeploymentTargets(for: platforms.subtracting([.watchOS])),
                     infoPlist: .file(path: "Example/SupportingFiles/ExampleAppInfo.plist"),
                     sources: ["Example/Sources/**/*.swift"],
                     resources: ["Example/Resources/**/*"],
@@ -353,7 +353,7 @@ public extension Project {
         let baseProjectSettings = SettingsDictionary()
             .bitcodeEnabled(false)
             .swiftCompilationMode(.wholemodule)
-            .supportsMacCatalyst(false)
+            .supportsMacCatalyst(true)
 
         // MARK: - Project Initialization
 
@@ -365,7 +365,7 @@ public extension Project {
                 disableBundleAccessors: true,
                 disableShowEnvironmentVarsInScriptPhases: false,
                 disableSynthesizedResourceAccessors: true,
-                textSettings: .currencyConverterTextSettings
+                textSettings: .smsTextSettings
             ),
             settings: .settings(
                 base: baseProjectSettings,

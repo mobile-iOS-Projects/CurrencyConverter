@@ -17,7 +17,7 @@ public extension ProjectDescription.Project.Options.TextSettings {
     ///
     /// Related swiftformat rules are:
     /// * --indent 4
-    static var currencyConverterTextSettings: Self {
+    static var smsTextSettings: Self {
         return .textSettings(
             usesTabs: false,
             indentWidth: 4,

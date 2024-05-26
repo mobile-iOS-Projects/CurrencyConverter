@@ -9,6 +9,6 @@ let project: Project = .microFeatureProject(
         .implementation(
         ),
     ],
-    platforms: [.iOS],
+    platforms: [.iOS, .visionOS, .watchOS],
     disableTargetSetValidation: true
 )

@@ -1,0 +1,58 @@
+/* Localizable.strings\n Created by Steinmetz, Conrad on 01.13.23. */
+/* MARK: - Log Out View Section */
+/* XTIT: Title for the 'Log out view' when watch feature is disabled */
+"watch.log_out_view.app_disabled.title" = "アプリ無効";
+
+/* XTIT: Title for the 'Log out view' when passcode on watch is not set but required */
+"watch.log_out_view.app_suspended.title" = "アプリ中断";
+
+/* XTIT: Title for the 'Log out view' when disconnected from the phone for too long */
+"watch.log_out_view.sign_out.title" = "サインアウト";
+
+/* XTIT: Title for the 'Log out view' with no error */
+"watch.log_out_view.sign_in.title" = "サインイン";
+
+/* XMSG: Message for 'Log out view' with no error */
+"watch.log_out_view.sign_in_on_phone.hint" = "自動的に接続されない場合は、電話でアプリを開いて下のボタンをタップしてください。";
+
+/* XBUT: Button label to sign in */
+"watch.log_out_view.button.sign_in.label" = "続行";
+
+/* XMSG: Message for 'Log out view' with no error */
+"watch.log_out_view.log_in_needed.description" = "ウォッチでこのアプリを使用するには、電話から SAP Mobile Start にサインインしてください。";
+
+/* XMSG: Message for 'Log out view' when passcode on watch is not set but required */
+"watch.log_out_view.passcode_required.description" = "このウォッチアプリを使用するには、設定でウォッチのパスコードを設定します。";
+
+/* XMSG: Message for 'Log out view' when disconnected from the phone for too long */
+"watch.log_out_view.watch_disconnected.description" = "電話をウォッチに近づけ、SAP Mobile Start へのサインインを再び行います。";
+
+/* XMSG: Message for 'Log out view' when watch feature is disabled */
+"watch.log_out_view.watch_feature_disabled.description" = "管理者により、会社に対してこのウォッチアプリが無効化されています。";
+
+/* MARK: - Monitoring Tab */
+/* XBUT: Button label to try again when error occurred */
+"watch.monitoring_tab.list.button.label" = "再試行";
+
+/* XTIT: Title for 'MonitoringTileRowView' when metadata title is nil */
+"watch.monitoring_tab.list.row.title.placeholder" = "不明";
+
+/* XTIT: Title for navigation bar of 'MonitoringList' */
+"watch.monitoring_tab.list.title" = "監視";
+
+/* XMSG: Message text when there are no tiles for 'MonitoringList' */
+"watch.monitoring_tab.empty_list_view.message" = "アプリがありません";
+
+/* XTIT: Title when loading failed for 'MonitoringList' or 'MonitoringTileRowView' */
+"watch.monitoring_tab.error.loading_failed.title" = "ロードに失敗しました";
+
+/* XMSG: Message text for error when there is no internet connection */
+"watch.monitoring_tab.error.no_internet.message" = "インターネット接続をチェックしてください。";
+
+/* XMSG: Message text for generic error */
+"watch.monitoring_tab.error.something_went_wrong.message" = "問題が発生しました。";
+
+/* MARK: - Monitoring Details */
+/* XTIT: Title for navigation bar of 'MonitoringTileDetailView' */
+"watch.monitoring_tab.list.tile_detail.nav_bar.title" = "詳細";
+

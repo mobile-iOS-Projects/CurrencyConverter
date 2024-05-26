@@ -18,7 +18,7 @@ struct SettingsTab: View {
 
     var body: some View {
         NavigationStack(path: $routerPath.path) {
-           TestTab()
+            TestTab(selectedTab: $selectedTab)
                 .withAppRouter()
                 .withSheetDestinations(sheetDestinations: $routerPath.presentedSheet)
         }.environment(routerPath)
@@ -28,12 +28,14 @@ struct SettingsTab: View {
 @MainActor
 struct TestTab: View {
     @Environment(RouterPath.self) private var routerPath
+    @Binding var selectedTab: Tab
 
     var body: some View {
         Rectangle()
             .foregroundStyle(Color.cyan)
             .onTapGesture {
-                routerPath.presentedSheet = .conversionList
+                
+                routerPath.navigate(to: .childViewTab)
             }
     }
 }

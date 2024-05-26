@@ -11,5 +11,5 @@ let project: Project = .microFeatureProject(
             ]
         ),
     ],
-    platforms: [.iOS]
+    platforms: [.iOS, .visionOS, .watchOS]
 )

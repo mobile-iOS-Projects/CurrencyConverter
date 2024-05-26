@@ -202,6 +202,34 @@
                ReferencedContainer = "container:Tuist/.build/tuist-derived/swiftui-introspect/swiftui-introspect.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "89B0C00197FE47CDBBD15D6A"
+               BuildableName = "CurrencyConverter.app"
+               BlueprintName = "visionOS"
+               ReferencedContainer = "container:App/App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2069D4A35876281D1E8EF17D"
+               BuildableName = "CurrencyConverter.app"
+               BlueprintName = "watchOS"
+               ReferencedContainer = "container:App/App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

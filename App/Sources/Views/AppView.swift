@@ -1,6 +1,8 @@
 import SwiftUI
 import SMSCore
+#if !os(visionOS)
 import SwiftUIIntrospect
+#endif
 
 @MainActor
 struct AppView: View {
@@ -14,17 +16,17 @@ struct AppView: View {
     @State var sidebarTabs = SidebarTabs.shared
 
     var body: some View {
-#if os(visionOS)
+        #if os(visionOS)
         tabBarView
-#else
+        #else
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
             sidebarView
         } else {
             tabBarView
         }
-#endif
+        #endif
     }
-    
+
     var availableTabs: [Tab] {
         if UIDevice.current.userInterfaceIdiom == .phone || horizontalSizeClass == .compact {
             return iosTabs.tabs
@@ -51,7 +53,7 @@ struct AppView: View {
         }
 //        .id(UUID())
 //        .frame(width: 100, height: 100)
-        .withSheetDestinations(sheetDestinations: $appRouterPath.presentedSheet)
+//        .withSheetDestinations(sheetDestinations: $appRouterPath.presentedSheet)
     }
     
 #if !os(visionOS)
@@ -65,7 +67,7 @@ struct AppView: View {
                         tab
                             .makeContentView(selectedTab: $selectedTab)
                             .tabItem {
-                                tab.label
+                                Image(systemName: tab.iconName)
                             }
                             .tag(tab)
                     }
