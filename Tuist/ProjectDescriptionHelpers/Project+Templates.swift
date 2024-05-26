@@ -40,7 +40,7 @@ public extension DeploymentTargets {
         var iOS: String? = nil
         var watchOS: String? = nil
         var visionOS: String? = nil
-        var macOS: String? = nil
+//        var macOS: String? = nil
 
         if platforms.contains(.iOS) {
             iOS = "17.0"
@@ -54,13 +54,13 @@ public extension DeploymentTargets {
             visionOS = "1.1"
         }
         
-        if platforms.contains(.macOS) {
-            visionOS = "14.4.1"
-        }
+//        if platforms.contains(.macOS) {
+//            visionOS = "14.4"
+//        }
 
         return .multiplatform(
             iOS: iOS,
-            macOS: macOS,
+//            macOS: macOS,
             watchOS: watchOS,
             visionOS: visionOS
         )

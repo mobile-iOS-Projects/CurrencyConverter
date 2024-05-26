@@ -210,6 +210,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2828C21D2DFE1B07D50BA1D0"
+               BuildableName = "CurrencyConverter.app"
+               BlueprintName = "macOS"
+               ReferencedContainer = "container:App/App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "89B0C00197FE47CDBBD15D6A"
                BuildableName = "CurrencyConverter.app"
                BlueprintName = "visionOS"

@@ -225,6 +225,59 @@ let visionOSAppScheme: Scheme = .scheme(
     archiveAction: .archiveAction(configuration: .configuration("Development"))
 )
 
+// MARK: - macOS
+let macOSBaseSettings: [String: SettingValue] = [
+    "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_MACOS)"
+]
+
+let developmentConfigurationMacOS: Configuration = .debug(
+    name: "Development",
+    settings: macOSBaseSettings
+)
+
+// macOS
+let macOSAppTarget: Target = .target(
+    name: "macOS",
+    destinations: .smsDestinations(for: [.macOS]),
+    product: .app,
+    productName: "CurrencyConverter",
+    bundleId: "com.currency.converter.mobile.apps.macOS",
+    deploymentTargets: .smsDeploymentTargets(for: [.macOS]),
+    infoPlist: .default,
+    sources: [
+        "Sources/**/*.swift"
+    ],
+    resources: [
+        "Resources/**/*"
+    ],
+//    entitlements: .file(path: "SupportingFiles/CurrencyConverter.entitlements") ,
+    scripts: Environment.isScriptsIncluded() ? [swiftformatScript, swiftlintScript, highlightTodosScript] : [],
+    dependencies: [
+        .project(target: "Conversion", path: .relativeToRoot("Features/Conversion")),
+        .project(target: "News", path: .relativeToRoot("Features/News")),
+        .project(target: "Settings", path: .relativeToRoot("Features/Settings")),
+        .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
+        .external(name: "Factory"),
+        .external(name: "SwiftUIIntrospect"),
+    ],
+    settings: .settings(
+        configurations: [
+            developmentConfigurationMacOS
+        ],
+        defaultSettings: .recommended(excluding: ["SWIFT_ACTIVE_COMPILATION_CONDITIONS", "CODE_SIGN_IDENTITY"])
+    )
+)
+
+let macOSAppScheme: Scheme = .scheme(
+    name: "CurrencyConverter - macOS",
+    shared: true,
+    hidden: false,
+    buildAction: .buildAction(targets: ["macOS"]),
+    testAction: .targets([], configuration: "Development", options: .options(coverage: true, codeCoverageTargets: ["macOS"])),
+    runAction: .runAction(configuration: "Development", executable: "macOS"),
+    archiveAction: .archiveAction(configuration: .configuration("Development"))
+)
+
 let project = Project(
     name: "App",
     options: .options(
@@ -245,12 +298,14 @@ let project = Project(
         appTarget,
         appUnitTestTarget,
         watchOSAppTarget,
-        visionOSAppTarget
+        visionOSAppTarget,
+        macOSAppTarget
     ],
     schemes: [
         appScheme,
         watchOSAppScheme,
-        visionOSAppScheme
+        visionOSAppScheme,
+        macOSAppScheme
     ],
     additionalFiles: [
         "README.md",

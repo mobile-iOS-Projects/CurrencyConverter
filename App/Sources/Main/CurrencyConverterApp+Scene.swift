@@ -18,7 +18,7 @@ extension CurrencyConverterApp {
                 }
         }
         #if targetEnvironment(macCatalyst)
-        .defaultSize(width: userPreferences.showiPadSecondaryColumn ? 1100 : 800, height: 1400)
+        .defaultSize(width: 1100, height: 1400)
         #elseif os(visionOS)
         .defaultSize(width: 800, height: 1200)
         #endif
