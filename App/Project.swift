@@ -34,7 +34,11 @@ let appTarget: Target = .target(
     productName: "CurrencyConverter",
     bundleId: "com.currency.converter.mobile.apps",
     deploymentTargets: .currencyConverterDeploymentTargets(for: [.iOS]),
-    infoPlist: .default,
+    infoPlist: .extendingDefault(
+        with: [
+            "UILaunchStoryboardName": "LaunchScreen.storyboard",
+        ]
+    ),
     sources: [
         "Sources/**/*.swift",
     ],
@@ -49,6 +53,7 @@ let appTarget: Target = .target(
         .project(target: "SMSCoreUI", path: .relativeToRoot("Features/Foundation/SMSCoreUI")),
         .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
         .external(name: "Factory"),
+        .external(name: "SwiftUIIntrospect"),
     ],
     settings: .settings(
         configurations: [developmentConfiguration],

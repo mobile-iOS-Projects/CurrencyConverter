@@ -9,7 +9,8 @@ import PackageDescription
 
     let packageSettings = PackageSettings(
         productTypes: [ // Convert 3rd party frameworks into dynamic frameworks
-            "Factory": .framework
+            "Factory": .framework,
+            "SwiftUIIntrospect": .framework
         ],
         baseSettings: .settings(
             base: [:],
@@ -18,6 +19,7 @@ import PackageDescription
         ),
         targetSettings: [
             "Factory": frameworkBaseSettings.applicationExtensionAPIOnly(true),
+            "SwiftUIIntrospect": frameworkBaseSettings
         ]
     )
 #endif
@@ -26,6 +28,7 @@ let package = Package(
     name: "CurrencyConverterDependencies",
     dependencies: [
         // true 3rd Party Dependencies
-        .package(url: "https://github.com/hmlongco/Factory", from: "2.3.2")
+        .package(url: "https://github.com/hmlongco/Factory", from: "2.3.2"),
+        .package(url: "https://github.com/siteline/swiftui-introspect", from: "1.1.4")
     ]
 )
