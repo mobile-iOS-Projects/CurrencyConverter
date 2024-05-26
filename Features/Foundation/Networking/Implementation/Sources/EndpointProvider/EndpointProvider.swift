@@ -70,7 +70,7 @@ extension EndpointProvider {
         let headers: [String: String] = [
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "X-Use-Cache": "true"
+            "X-Use-Cache": "true",
         ]
 
         urlRequest.setHeaders(from: headers)

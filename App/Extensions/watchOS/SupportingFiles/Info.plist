@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>App_Group_Id</key>
+	<string>$(APP_GROUP_ID)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -20,6 +22,8 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Team_Id</key>
+	<string>$(DEVELOPMENT_TEAM)</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -31,9 +35,5 @@
 	<string>$(APP_BUNDLE_ID_MAIN)</string>
 	<key>WKRunsIndependentlyOfCompanionApp</key>
 	<false/>
-	<key>App_Group_Id</key>
-	<string>$(APP_GROUP_ID)</string>
-	<key>Team_Id</key>
-	<string>$(DEVELOPMENT_TEAM)</string>
 </dict>
 </plist>
