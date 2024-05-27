@@ -242,7 +242,7 @@ let macOSAppTarget: Target = .target(
     product: .app,
     productName: "CurrencyConverter",
     bundleId: "com.currency.converter.mobile.apps.macOS",
-    deploymentTargets: .smsDeploymentTargets(for: [.macOS]),
+    deploymentTargets: .smsDeploymentTargets(for: [.iOS]),
     infoPlist: .default,
     sources: [
         "Sources/**/*.swift"
