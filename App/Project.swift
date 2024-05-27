@@ -18,13 +18,9 @@ let highlightTodosScript: TargetScript = .highlightTodosScript(
 
 // MARK: - iOS
 
-let iOSBaseSettings: [String: SettingValue] = [
-    "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_MAIN)",
-]
-
 let developmentConfiguration: Configuration = .debug(
     name: "Development",
-    settings: iOSBaseSettings
+    settings: [:]
 )
 
 let appTarget: Target = .target(
@@ -32,13 +28,9 @@ let appTarget: Target = .target(
     destinations: .smsDestinations(for: [.iOS]),
     product: .app,
     productName: "CurrencyConverter",
-    bundleId: "com.currency.converter.mobile.apps",
+    bundleId: "$(APP_BUNDLE_ID_MAIN)",
     deploymentTargets: .smsDeploymentTargets(for: [.iOS]),
-    infoPlist: .extendingDefault(
-        with: [
-            "UILaunchStoryboardName": "LaunchScreen.storyboard",
-        ]
-    ),
+    infoPlist: "SupportingFiles/Info.plist",
     sources: [
         "Sources/**/*.swift",
     ],
@@ -97,14 +89,9 @@ let appScheme: Scheme = .scheme(
 
 // MARK: - watchOS
 
-// MARK: - watchOS Widgets (Complications)
-let watchOSWidgetBaseSettings: [String: SettingValue] =
-    ["PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_WATCH_OS_WIDGET)"]
-
 // MARK: - watchOS App
 let watchOSBaseSettings: [String: SettingValue] = [
-    "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_WATCH_OS)",
-    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
+    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor"
 ]
 
 let watchOSDevelopmentConfiguration: Configuration = .debug(
@@ -170,13 +157,9 @@ let watchOSAppScheme: Scheme = .scheme(
 )
 
 // MARK: - visionOS
-let visionOSBaseSettings: [String: SettingValue] = [
-    "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_VISIONOS)"
-]
-
 let developmentConfigurationVisionOS: Configuration = .debug(
     name: "Development",
-    settings: visionOSBaseSettings
+    settings: [:]
 )
 
 // visionOS
@@ -185,7 +168,7 @@ let visionOSAppTarget: Target = .target(
     destinations: .smsDestinations(for: [.visionOS]),
     product: .app,
     productName: "CurrencyConverter",
-    bundleId: "com.currency.converter.mobile.apps.vision",
+    bundleId: "$(APP_BUNDLE_ID_VISIONOS)",
     deploymentTargets: .smsDeploymentTargets(for: [.visionOS]),
     infoPlist: "SupportingFiles/Info-visionOS.plist",
     sources: [
@@ -226,13 +209,10 @@ let visionOSAppScheme: Scheme = .scheme(
 )
 
 // MARK: - macOS
-let macOSBaseSettings: [String: SettingValue] = [
-    "PROVISIONING_PROFILE_SPECIFIER": "$(PROVISIONING_PROFILE_SPECIFIER_MACOS)"
-]
 
 let developmentConfigurationMacOS: Configuration = .debug(
     name: "Development",
-    settings: macOSBaseSettings
+    settings: [:]
 )
 
 // macOS
@@ -241,7 +221,7 @@ let macOSAppTarget: Target = .target(
     destinations: .smsDestinations(for: [.macOS]),
     product: .app,
     productName: "CurrencyConverter",
-    bundleId: "com.currency.converter.mobile.apps.macOS",
+    bundleId: "$(APP_BUNDLE_ID_MACOS)",
     deploymentTargets: .smsDeploymentTargets(for: [.iOS]),
     infoPlist: .default,
     sources: [
@@ -250,7 +230,6 @@ let macOSAppTarget: Target = .target(
     resources: [
         "Resources/**/*"
     ],
-//    entitlements: .file(path: "SupportingFiles/CurrencyConverter.entitlements") ,
     scripts: Environment.isScriptsIncluded() ? [swiftformatScript, swiftlintScript, highlightTodosScript] : [],
     dependencies: [
         .project(target: "Conversion", path: .relativeToRoot("Features/Conversion")),
