@@ -14,7 +14,10 @@ struct SMSWatchApp: App {
     // MARK: - Body
     var body: some Scene {
         WindowGroup {
-            Text("nikita")
+            VStack {
+                Text("nikita")
+            }.background(Color.red)
+           
         }
     }
 }
