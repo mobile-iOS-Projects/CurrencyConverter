@@ -47,6 +47,8 @@ let appTarget: Target = .target(
         .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
+        
+        .target(name: "watchOS", condition: .when([.ios])),
     ],
     settings: .settings(
         configurations: [developmentConfiguration],
