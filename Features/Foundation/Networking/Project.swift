@@ -7,7 +7,7 @@ let project: Project = .microFeatureProject(
     targets: [
         .implementation(
             dependencies: [
-                .project(target: "SMSCore", path: .relativeToRoot("Features/Foundation/SMSCore")),
+                .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
             ]
         ),
     ],

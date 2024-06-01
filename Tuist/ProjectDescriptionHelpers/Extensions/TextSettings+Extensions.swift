@@ -9,7 +9,7 @@ import Foundation
 import ProjectDescription
 
 public extension ProjectDescription.Project.Options.TextSettings {
-    /// SMS project specific text settings for Xcode projects
+    /// Currency project specific text settings for Xcode projects
     ///
     /// Applies text settings that are matching the rules we defined in `./.swiftformat` files
     /// * No tab character usage
@@ -17,7 +17,7 @@ public extension ProjectDescription.Project.Options.TextSettings {
     ///
     /// Related swiftformat rules are:
     /// * --indent 4
-    static var smsTextSettings: Self {
+    static var currencyTextSettings: Self {
         return .textSettings(
             usesTabs: false,
             indentWidth: 4,

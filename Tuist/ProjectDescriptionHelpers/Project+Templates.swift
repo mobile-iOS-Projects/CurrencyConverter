@@ -12,7 +12,7 @@ public let workspaceBaseId = "com.currency.converter.mobile.apps"
 
 public extension Destinations {
     /// The destinations we support for the given set of platform
-    static func smsDestinations(for platforms: Set<Platform>) -> Destinations {
+    static func currencyDestinations(for platforms: Set<Platform>) -> Destinations {
         var set: Destinations = []
         if platforms.contains(.iOS) {
             set.formUnion([.iPhone, .iPad])
@@ -36,7 +36,7 @@ public extension Destinations {
 
 public extension DeploymentTargets {
     // The deployment targets we support for the given set of platforms
-    static func smsDeploymentTargets(for platforms: Set<Platform>) -> DeploymentTargets {
+    static func currencyDeploymentTargets(for platforms: Set<Platform>) -> DeploymentTargets {
         var iOS: String? = nil
         var watchOS: String? = nil
         var visionOS: String? = nil

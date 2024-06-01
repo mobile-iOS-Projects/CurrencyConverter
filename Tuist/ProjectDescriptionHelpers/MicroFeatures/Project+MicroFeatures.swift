@@ -87,11 +87,11 @@ public extension Project {
             // Create an interface target for each platform specified
             let interfaceTarget: Target = .target(
                 name: "\(projectName)API",
-                destinations: .smsDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)API",
                 bundleId: "\(moduleBaseId).api",
-                deploymentTargets: .smsDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["Interface/Sources/**/*.swift"],
                 resources: ["Interface/Resources/**/*"],
@@ -121,11 +121,11 @@ public extension Project {
             // Create an implementation target for each platform specified
             let implementationTarget: Target = .target(
                 name: "\(projectName)",
-                destinations: .smsDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)",
                 bundleId: moduleBaseId,
-                deploymentTargets: .smsDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: [
                     "Implementation/Sources/**/*.swift",
@@ -160,10 +160,10 @@ public extension Project {
         if let testsTarget = targets.testsTarget {
             let testTarget: Target = .target(
                 name: "\(projectName)Tests",
-                destinations: .smsDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .unitTests,
                 bundleId: "\(moduleBaseId).tests",
-                deploymentTargets: .smsDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["Tests/Sources/**/*.swift"],
                 resources: ["Tests/Resources/**/*"],
@@ -195,11 +195,11 @@ public extension Project {
             // Create an test supporting target for each platform specified
             let testSupportingTarget: Target = .target(
                 name: "\(projectName)TestSupporting",
-                destinations: .smsDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)TestSupporting",
                 bundleId: "\(moduleBaseId).testsupporting",
-                deploymentTargets: .smsDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["TestSupporting/Sources/**/*.swift"],
                 resources: ["TestSupporting/Resources/**/*"],
@@ -241,10 +241,10 @@ public extension Project {
             projectTargets.append(
                 .target(
                     name: "\(projectName)Example",
-                    destinations: .smsDestinations(for: platforms.subtracting([.watchOS])),
+                    destinations: .currencyDestinations(for: platforms.subtracting([.watchOS])),
                     product: .app,
                     bundleId: "\(moduleBaseId).example",
-                    deploymentTargets: .smsDeploymentTargets(for: platforms.subtracting([.watchOS])),
+                    deploymentTargets: .currencyDeploymentTargets(for: platforms.subtracting([.watchOS])),
                     infoPlist: .file(path: "Example/SupportingFiles/ExampleAppInfo.plist"),
                     sources: ["Example/Sources/**/*.swift"],
                     resources: ["Example/Resources/**/*"],
@@ -365,7 +365,7 @@ public extension Project {
                 disableBundleAccessors: true,
                 disableShowEnvironmentVarsInScriptPhases: false,
                 disableSynthesizedResourceAccessors: true,
-                textSettings: .smsTextSettings
+                textSettings: .currencyTextSettings
             ),
             settings: .settings(
                 base: baseProjectSettings,

@@ -13,8 +13,8 @@ let productFeatures: [Path] = [
 
 let foundationFeatures: [Path] = [
     "Features/Foundation/Networking",
-    "Features/Foundation/SMSCore",
-    "Features/Foundation/SMSCoreUI",
+    "Features/Foundation/CurrencyCore",
+    "Features/Foundation/CurrencyCoreUI",
     "Features/Foundation/SwiftData",
 ]
 

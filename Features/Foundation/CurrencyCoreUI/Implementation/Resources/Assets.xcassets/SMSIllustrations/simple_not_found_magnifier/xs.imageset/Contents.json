@@ -1,0 +1,29 @@
+{
+  "images" : [
+    {
+      "filename" : "not_found_magnifying_glass_xs.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "not_found_magnifying_glass_xs_dark.svg",
+      "idiom" : "universal"
+    },
+    {
+      "idiom" : "vision"
+    },
+    {
+      "filename" : "not_found_magnifying_glass_xs_dark.svg",
+      "idiom" : "watch"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "images" : [
+    {
+      "filename" : "empty_document_s.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "empty_document_s_dark.svg",
+      "idiom" : "universal"
+    },
+    {
+      "idiom" : "vision"
+    },
+    {
+      "filename" : "empty_document_s_dark.svg",
+      "idiom" : "watch"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -29,13 +29,13 @@
          location = "group:Foundation"
          name = "Foundation">
          <FileRef
+            location = "group:CurrencyCore/CurrencyCore.xcodeproj">
+         </FileRef>
+         <FileRef
+            location = "group:CurrencyCoreUI/CurrencyCoreUI.xcodeproj">
+         </FileRef>
+         <FileRef
             location = "group:Networking/Networking.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:SMSCore/SMSCore.xcodeproj">
-         </FileRef>
-         <FileRef
-            location = "group:SMSCoreUI/SMSCoreUI.xcodeproj">
          </FileRef>
          <FileRef
             location = "group:SwiftData/SwiftData.xcodeproj">

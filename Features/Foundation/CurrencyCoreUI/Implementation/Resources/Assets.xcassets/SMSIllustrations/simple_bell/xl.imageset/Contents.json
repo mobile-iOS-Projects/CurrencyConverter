@@ -1,0 +1,30 @@
+{
+  "images" : [
+    {
+      "filename" : "simple_bell_xl.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "simple_bell_xl_dark.svg",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "simple_bell_xl_visionos.svg",
+      "idiom" : "vision"
+    },
+    {
+      "filename" : "simple_bell_xl_dark.svg",
+      "idiom" : "watch"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

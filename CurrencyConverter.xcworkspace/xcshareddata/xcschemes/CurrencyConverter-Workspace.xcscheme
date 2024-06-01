@@ -70,6 +70,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD7AFEEE93CC3E00EF6D2306"
+               BuildableName = "CurrencyCore.framework"
+               BlueprintName = "CurrencyCore"
+               ReferencedContainer = "container:Features/Foundation/CurrencyCore/CurrencyCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1776BE8D3934D62978B2050"
+               BuildableName = "CurrencyCoreUI.framework"
+               BlueprintName = "CurrencyCoreUI"
+               ReferencedContainer = "container:Features/Foundation/CurrencyCoreUI/CurrencyCoreUI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "374966D1D7AB94212268A710"
                BuildableName = "Factory.framework"
                BlueprintName = "Factory"
@@ -116,34 +144,6 @@
                BuildableName = "NewsAPI.framework"
                BlueprintName = "NewsAPI"
                ReferencedContainer = "container:Features/News/News.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FFAFEC81D58CD287946D52A2"
-               BuildableName = "SMSCore.framework"
-               BlueprintName = "SMSCore"
-               ReferencedContainer = "container:Features/Foundation/SMSCore/SMSCore.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65B547B3AE5263736ED45CF7"
-               BuildableName = "SMSCoreUI.framework"
-               BlueprintName = "SMSCoreUI"
-               ReferencedContainer = "container:Features/Foundation/SMSCoreUI/SMSCoreUI.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
