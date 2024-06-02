@@ -1,5 +1,5 @@
 //
-//  CurrencyAPIConstants.swift
+//  APIConstants.swift
 //  Networking
 //
 //  Created by Siarhei Runovich on 22.05.24.

@@ -8,7 +8,7 @@
 import Foundation
 
 public struct AccessGroup {
-    private let suffix = "com.sap.mobile.apps.SharedItems"
+    private let suffix = "com.currency.converter.mobile.apps.SharedItems"
     private let teamIdKey = "Team_Id"
     private let bundleId: String
 

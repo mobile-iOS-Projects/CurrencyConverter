@@ -74,12 +74,12 @@ extension Publisher {
 }
 
 extension Publisher {
-    /// A custom debounce operator that already applies some default values for the SAP Mobile Start application
+    /// A custom debounce operator that already applies some default values for the Currency Converter application
     ///
     /// - Parameters:
     ///   - timeInterval: The timeInterval to wait until publishing new elements. If left empty, 0.5 seconds is the default value
     /// - Returns:  A publisher of the value, delayed by `timeInterval`
-    public func smsDebounce(
+    public func currencyConverterDebounce(
         for timeInterval: DispatchQueue.SchedulerTimeType
             .Stride = .seconds(0.5)
     ) -> AnyPublisher<Output, Failure> {

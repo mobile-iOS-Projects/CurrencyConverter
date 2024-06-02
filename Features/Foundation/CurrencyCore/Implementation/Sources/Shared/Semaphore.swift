@@ -1,5 +1,5 @@
 //
-//  SMSSemaphore.swift
+//  Semaphore.swift
 //  SMSCore
 //
 //  Created by Sergey Runovich on 6.05.24.
@@ -10,7 +10,7 @@ import Foundation
 /// A semaphore which allows to control access to a shared resource.
 /// It helps in managing concurrent access to resources by limiting the number
 /// of tasks that can access the resource simultaneously.
-public actor SMSSemaphore {
+public actor Semaphore {
     /// Is used by the semaphore to decide whether a task should get access to a shared resource or not.
     /// The counter value changes when we call `signal()` or `wait()` function
     private var count: Int
