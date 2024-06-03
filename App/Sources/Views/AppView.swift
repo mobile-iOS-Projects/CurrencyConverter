@@ -1,5 +1,4 @@
 import SwiftUI
-import SMSCore
 #if !os(visionOS)
 import SwiftUIIntrospect
 #endif

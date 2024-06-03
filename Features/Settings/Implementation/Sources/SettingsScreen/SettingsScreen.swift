@@ -5,11 +5,21 @@
 //  Created by Sergey Runovich on 6.05.24.
 //
 
-import Foundation
-import SettingsAPI
+import SwiftUI
 
-class SettingsScreen: SettingsAPI {
-    func test2() {}
+public struct SettingsScreen: View {
+    
+    public init() {}
+    
+    public var body: some View {
+        VStack {
+            Rectangle().foregroundStyle(Color.yellow)
+            Text("SettingsScreen").frame(height: 100)
+            Rectangle().foregroundStyle(Color.yellow)
+        }
+    }
+}
 
-    func test() {}
+#Preview {
+    SettingsScreen()
 }

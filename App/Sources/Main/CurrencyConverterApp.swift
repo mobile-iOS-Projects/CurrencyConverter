@@ -6,7 +6,6 @@
 //
 
 import AVFAudio
-import SMSCore
 import SwiftUI
 
 @main

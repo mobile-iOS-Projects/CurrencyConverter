@@ -1,15 +1,25 @@
 //
 //  ConversionScreen.swift
-//  ConversionAPI
+//  Conversion
 //
-//  Created by Sergey Runovich on 6.05.24.
+//  Created by Siarhei Runovich on 3.06.24.
 //
 
-import ConversionAPI
-import Foundation
+import SwiftUI
 
-class ConversionScreen: ConversionAPI {
-    func test2() {}
+public struct ConversionScreen: View {
+    
+    public init() {}
+    
+    public var body: some View {
+        VStack {
+            Rectangle().foregroundStyle(Color.red)
+            Text("ConversionScreen").frame(height: 100)
+            Rectangle().foregroundStyle(Color.red)
+        }
+    }
+}
 
-    func test() {}
+#Preview {
+    ConversionScreen()
 }

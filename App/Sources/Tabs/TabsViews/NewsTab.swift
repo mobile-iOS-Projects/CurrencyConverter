@@ -5,7 +5,9 @@
 //  Created by Siarhei Runovich on 26.05.24.
 //
 
+import News
 import SwiftUI
+
 
 @MainActor
 struct NewsTab: View {
@@ -18,8 +20,7 @@ struct NewsTab: View {
 
     var body: some View {
         NavigationStack(path: $routerPath.path) {
-            Rectangle()
-                .foregroundStyle(Color.green)
+            NewsScreen()
                 .withAppRouter()
                 .withSheetDestinations(sheetDestinations: $routerPath.presentedSheet)
         }.environment(routerPath)

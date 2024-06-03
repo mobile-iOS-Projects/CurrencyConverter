@@ -12,8 +12,6 @@ extension View {
                 Text("newsList")
             case .settingsList:
                 Text("settingsList")
-            case .childViewTab:
-                ChildViewTab()
             }
         }
     }

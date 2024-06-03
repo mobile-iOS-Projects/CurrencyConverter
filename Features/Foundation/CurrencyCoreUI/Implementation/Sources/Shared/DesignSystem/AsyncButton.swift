@@ -241,7 +241,7 @@ struct FioriProgressViewStyle: ProgressViewStyle {
 // MARK: - Preview
 #Preview("Successful action") {
     AsyncButton(action: {
-        try? await Task.sleep(seconds: 3)
+        try? await Task.sleep(3)
     }) {
         Text("Successful action")
     }
@@ -249,7 +249,7 @@ struct FioriProgressViewStyle: ProgressViewStyle {
 
 #Preview("Failing action") {
     AsyncButton(action: {
-        try? await Task.sleep(seconds: 3)
+        try? await Task.sleep(3)
         throw NSError(domain: "hello", code: 1, userInfo: nil)
     }) {
         Text("Failing action")
@@ -261,7 +261,7 @@ struct FioriProgressViewStyle: ProgressViewStyle {
         Section {
             Label("FAQ", systemImage: "star")
             AsyncButton(action: {
-                try? await Task.sleep(seconds: 3)
+                try? await Task.sleep(3)
                 throw NSError(domain: "hello", code: 1, userInfo: nil)
             }) {
                 Label(
@@ -282,24 +282,24 @@ struct FioriProgressViewStyle: ProgressViewStyle {
     #endif
 }
 
-#Preview("Toolbar usage") {
-    NavigationStack {
-        Text("Toolbar")
-            .navigationTitle("Toolbar Usage")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    AsyncButton("Success", action: {
-                        try? await Task.sleep(seconds: 3)
-                    }, options: .toolbar)
-                }
-
-                ToolbarItem(placement: .cancellationAction) {
-                    AsyncButton("Failure", action: {
-                        try? await Task.sleep(seconds: 3)
-                        throw NSError(domain: "hello", code: 1, userInfo: nil)
-                    }, options: .toolbar)
-                }
-            }
-    }
-}
+//#Preview("Toolbar usage") {
+//    NavigationStack {
+//        Text("Toolbar")
+//            .navigationTitle("Toolbar Usage")
+//            .navigationBarTitleDisplayMode(.inline)
+//            .toolbar {
+//                ToolbarItem(placement: .primaryAction) {
+//                    AsyncButton("Success", action: {
+//                        try? await Task.sleep(3)
+//                    }, options: .toolbar)
+//                }
+//
+//                ToolbarItem(placement: .cancellationAction) {
+//                    AsyncButton("Failure", action: {
+//                        try? await Task.sleep(seconds: 3)
+//                        throw NSError(domain: "hello", code: 1, userInfo: nil)
+//                    }, options: .toolbar)
+//                }
+//            }
+//    }
+//}

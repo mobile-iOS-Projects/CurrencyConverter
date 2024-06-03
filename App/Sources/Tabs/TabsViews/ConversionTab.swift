@@ -1,10 +1,11 @@
 //
-//  SMSTab.swift
+//  ConversionTab.swift
 //  App
 //
 //  Created by Siarhei Runovich on 24.05.24.
 //
 
+import Conversion
 import SwiftUI
 
 @MainActor
@@ -18,8 +19,7 @@ struct ConversionTab: View {
 
     var body: some View {
         NavigationStack(path: $routerPath.path) {
-            Rectangle()
-                .foregroundStyle(Color.red)
+            ConversionScreen()
                 .withAppRouter()
                 .withSheetDestinations(sheetDestinations: $routerPath.presentedSheet)
         }.environment(routerPath)

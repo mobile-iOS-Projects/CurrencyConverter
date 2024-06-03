@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SMSCore
 
 // MARK: - SMSIconFontSet
 public struct SMSIconFontSet {

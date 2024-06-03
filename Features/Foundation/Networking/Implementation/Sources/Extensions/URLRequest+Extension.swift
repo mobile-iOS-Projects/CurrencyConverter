@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SMSCore
+import CurrencyCore
 
 // MARK: - URLRequest+Withable
 

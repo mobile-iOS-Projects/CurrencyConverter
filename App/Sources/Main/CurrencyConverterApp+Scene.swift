@@ -6,7 +6,6 @@
 //
 
 import AppIntents
-import SMSCore
 import SwiftUI
 
 extension CurrencyConverterApp {
