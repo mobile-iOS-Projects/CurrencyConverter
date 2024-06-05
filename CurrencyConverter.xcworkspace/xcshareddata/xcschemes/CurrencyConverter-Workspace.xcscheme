@@ -98,6 +98,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3E1637865C1E48CFAB75DEA8"
+               BuildableName = "Env.framework"
+               BlueprintName = "Env"
+               ReferencedContainer = "container:Features/Foundation/Env/Env.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6AA69AA649852453411741CE"
+               BuildableName = "EnvAPI.framework"
+               BlueprintName = "EnvAPI"
+               ReferencedContainer = "container:Features/Foundation/Env/Env.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "374966D1D7AB94212268A710"
                BuildableName = "Factory.framework"
                BlueprintName = "Factory"

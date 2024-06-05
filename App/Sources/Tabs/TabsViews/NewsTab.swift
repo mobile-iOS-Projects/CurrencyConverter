@@ -8,7 +8,6 @@
 import News
 import SwiftUI
 
-
 @MainActor
 struct NewsTab: View {
     @State private var routerPath = RouterPath()

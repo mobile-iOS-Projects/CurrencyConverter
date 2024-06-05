@@ -45,6 +45,7 @@ let appTarget: Target = .target(
         .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
         .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI")),
         .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
+        .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
         

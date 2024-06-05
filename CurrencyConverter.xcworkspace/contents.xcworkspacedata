@@ -35,6 +35,9 @@
             location = "group:CurrencyCoreUI/CurrencyCoreUI.xcodeproj">
          </FileRef>
          <FileRef
+            location = "group:Env/Env.xcodeproj">
+         </FileRef>
+         <FileRef
             location = "group:Networking/Networking.xcodeproj">
          </FileRef>
          <FileRef

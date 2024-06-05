@@ -49,7 +49,6 @@ struct SideBarView<Content: View>: View {
                     .frame(width: .sidebarWidth)
                     .scrollContentBackground(.hidden)
                     .background(.thinMaterial)
-//                    Divider().edgesIgnoringSafeArea(.all)
                 }
                 content()
             }

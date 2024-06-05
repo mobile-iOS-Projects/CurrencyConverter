@@ -1,4 +1,5 @@
 import SwiftUI
+import Factory
 #if !os(visionOS)
 import SwiftUIIntrospect
 #endif
@@ -7,6 +8,7 @@ import SwiftUIIntrospect
 struct AppView: View {
     @Environment(\.openWindow) var openWindow
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+    @Injected(\.soundEffectManagerAPI) var soundEffectManagerAPI
 
     @Binding var selectedTab: Tab
     @Binding var appRouterPath: RouterPath
@@ -39,6 +41,8 @@ struct AppView: View {
         TabView(selection: .init(get: {
             selectedTab
         }, set: { newTab in
+    
+            soundEffectManagerAPI.playSound(.tabSelection)
             selectedTab = newTab
         })) {
             ForEach(availableTabs) { tab in
