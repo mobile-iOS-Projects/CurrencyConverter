@@ -14,7 +14,7 @@ public class SoundEffectManager: SoundEffectManagerAPI {
 
     private func registerSounds() {
         SoundEffect.allCases.forEach { effect in
-            guard let url = Bundle.current.url(forResource: effect.rawValue, withExtension: "wav") else {
+            guard let url = Bundle.main.url(forResource: effect.rawValue, withExtension: "wav") else {
                 return
             }
             register(url: url, for: effect)
