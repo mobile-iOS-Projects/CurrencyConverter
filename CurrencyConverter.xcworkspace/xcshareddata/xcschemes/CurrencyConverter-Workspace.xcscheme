@@ -42,38 +42,94 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "13CB1F6C8D8B9802973FE221"
+               BuildableName = "Conversion.framework"
+               BlueprintName = "Conversion"
+               ReferencedContainer = "container:Features/Conversion/Conversion.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "7FEF13ACB1F6AFB9CDDE9F2D"
+               BuildableName = "ConversionAPI.framework"
+               BlueprintName = "ConversionAPI"
+               ReferencedContainer = "container:Features/Conversion/Conversion.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "AD7AFEEE93CC3E00EF6D2306"
+               BuildableName = "CurrencyCore.framework"
+               BlueprintName = "CurrencyCore"
+               ReferencedContainer = "container:Features/Foundation/CurrencyCore/CurrencyCore.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1776BE8D3934D62978B2050"
+               BuildableName = "CurrencyCoreUI.framework"
+               BlueprintName = "CurrencyCoreUI"
+               ReferencedContainer = "container:Features/Foundation/CurrencyCoreUI/CurrencyCoreUI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3E1637865C1E48CFAB75DEA8"
+               BuildableName = "Env.framework"
+               BlueprintName = "Env"
+               ReferencedContainer = "container:Features/Foundation/Env/Env.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6AA69AA649852453411741CE"
+               BuildableName = "EnvAPI.framework"
+               BlueprintName = "EnvAPI"
+               ReferencedContainer = "container:Features/Foundation/Env/Env.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "374966D1D7AB94212268A710"
                BuildableName = "Factory.framework"
                BlueprintName = "Factory"
                ReferencedContainer = "container:Tuist/.build/tuist-derived/Factory/Factory.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52E844066D197E3B81FA748F"
-               BuildableName = "Home.framework"
-               BlueprintName = "Home"
-               ReferencedContainer = "container:Features/Home/Home.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0539DC95503DFA0006AD8713"
-               BuildableName = "HomeAPI.framework"
-               BlueprintName = "HomeAPI"
-               ReferencedContainer = "container:Features/Home/Home.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -98,10 +154,122 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "456209A97FD4586FF88E2792"
-               BuildableName = "NetworkingAPI.framework"
-               BlueprintName = "NetworkingAPI"
-               ReferencedContainer = "container:Features/Foundation/Networking/Networking.xcodeproj">
+               BlueprintIdentifier = "337A3BCC4B434DC8236D5523"
+               BuildableName = "News.framework"
+               BlueprintName = "News"
+               ReferencedContainer = "container:Features/News/News.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E6093A21E7AC772CF09D9EEA"
+               BuildableName = "NewsAPI.framework"
+               BlueprintName = "NewsAPI"
+               ReferencedContainer = "container:Features/News/News.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "29C23B3A94882DAAAE23A78D"
+               BuildableName = "Settings.framework"
+               BlueprintName = "Settings"
+               ReferencedContainer = "container:Features/Settings/Settings.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "18162EC878F6D71D5CE9222E"
+               BuildableName = "SettingsAPI.framework"
+               BlueprintName = "SettingsAPI"
+               ReferencedContainer = "container:Features/Settings/Settings.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4CB5B0D89408471C8191ACE1"
+               BuildableName = "SwiftData.framework"
+               BlueprintName = "SwiftData"
+               ReferencedContainer = "container:Features/Foundation/SwiftData/SwiftData.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C0B66C9F607B0D0E419B8581"
+               BuildableName = "SwiftUIIntrospect.framework"
+               BlueprintName = "SwiftUIIntrospect"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/swiftui-introspect/swiftui-introspect.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2828C21D2DFE1B07D50BA1D0"
+               BuildableName = "CurrencyConverter.app"
+               BlueprintName = "macOS"
+               ReferencedContainer = "container:App/App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "89B0C00197FE47CDBBD15D6A"
+               BuildableName = "CurrencyConverter.app"
+               BlueprintName = "visionOS"
+               ReferencedContainer = "container:App/App.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2069D4A35876281D1E8EF17D"
+               BuildableName = "CurrencyConverter.app"
+               BlueprintName = "watchOS"
+               ReferencedContainer = "container:App/App.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -1,0 +1,29 @@
+{
+  "images" : [
+    {
+      "filename" : "reload_message_l.svg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "reload_message_l_dark.svg",
+      "idiom" : "universal"
+    },
+    {
+      "idiom" : "vision"
+    },
+    {
+      "filename" : "reload_message_l_dark.svg",
+      "idiom" : "watch"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

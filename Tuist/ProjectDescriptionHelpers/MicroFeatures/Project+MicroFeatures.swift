@@ -87,15 +87,16 @@ public extension Project {
             // Create an interface target for each platform specified
             let interfaceTarget: Target = .target(
                 name: "\(projectName)API",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)API",
                 bundleId: "\(moduleBaseId).api",
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["Interface/Sources/**/*.swift"],
                 resources: ["Interface/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .swiftformatScript(for: type, on: .interface),
                     .swiftLintScript(for: type, on: .interface),
                     .highlightTodosScript(for: type, on: .interface),
                 ] + interfaceTarget.scripts : [],
@@ -120,11 +121,11 @@ public extension Project {
             // Create an implementation target for each platform specified
             let implementationTarget: Target = .target(
                 name: "\(projectName)",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)",
                 bundleId: moduleBaseId,
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: [
                     "Implementation/Sources/**/*.swift",
@@ -132,6 +133,7 @@ public extension Project {
                 ],
                 resources: ["Implementation/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .swiftformatScript(for: type, on: .implementation),
                     .swiftLintScript(for: type, on: .implementation),
                     .highlightTodosScript(for: type, on: .implementation)
                 ] + implementationTarget.scripts : [],
@@ -158,14 +160,15 @@ public extension Project {
         if let testsTarget = targets.testsTarget {
             let testTarget: Target = .target(
                 name: "\(projectName)Tests",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .unitTests,
                 bundleId: "\(moduleBaseId).tests",
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["Tests/Sources/**/*.swift"],
                 resources: ["Tests/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .swiftformatScript(for: type, on: .tests),
                     .swiftLintScript(for: type, on: .tests),
                     .highlightTodosScript(for: type, on: .tests)
                 ] + testsTarget.scripts : [],
@@ -192,15 +195,16 @@ public extension Project {
             // Create an test supporting target for each platform specified
             let testSupportingTarget: Target = .target(
                 name: "\(projectName)TestSupporting",
-                destinations: .currencyConverterDestinations(for: platforms),
+                destinations: .currencyDestinations(for: platforms),
                 product: .framework,
                 productName: "\(projectName)TestSupporting",
                 bundleId: "\(moduleBaseId).testsupporting",
-                deploymentTargets: .currencyConverterDeploymentTargets(for: platforms),
+                deploymentTargets: .currencyDeploymentTargets(for: platforms),
                 infoPlist: .default,
                 sources: ["TestSupporting/Sources/**/*.swift"],
                 resources: ["TestSupporting/Resources/**/*"],
                 scripts: Environment.isScriptsIncluded() ? [
+                    .swiftformatScript(for: type, on: .testSupporting),
                     .swiftLintScript(for: type, on: .testSupporting),
                     .highlightTodosScript(for: type, on: .testSupporting)
                 ] + testSupportingTarget.scripts : [], dependencies: [
@@ -237,15 +241,16 @@ public extension Project {
             projectTargets.append(
                 .target(
                     name: "\(projectName)Example",
-                    destinations: .currencyConverterDestinations(for: platforms.subtracting([.watchOS])),
+                    destinations: .currencyDestinations(for: platforms.subtracting([.watchOS])),
                     product: .app,
                     bundleId: "\(moduleBaseId).example",
-                    deploymentTargets: .currencyConverterDeploymentTargets(for: platforms.subtracting([.watchOS])),
+                    deploymentTargets: .currencyDeploymentTargets(for: platforms.subtracting([.watchOS])),
                     infoPlist: .file(path: "Example/SupportingFiles/ExampleAppInfo.plist"),
                     sources: ["Example/Sources/**/*.swift"],
                     resources: ["Example/Resources/**/*"],
                     entitlements: .file(path: "Example/SupportingFiles/ExampleApp.entitlements"),
                     scripts: Environment.isScriptsIncluded() ? [
+                        .swiftformatScript(for: type, on: .example),
                         .swiftLintScript(for: type, on: .example),
                         .highlightTodosScript(for: type, on: .example)
                     ] + exampleTarget.scripts : [],
@@ -348,7 +353,7 @@ public extension Project {
         let baseProjectSettings = SettingsDictionary()
             .bitcodeEnabled(false)
             .swiftCompilationMode(.wholemodule)
-            .supportsMacCatalyst(false)
+            .supportsMacCatalyst(true)
 
         // MARK: - Project Initialization
 
@@ -360,7 +365,7 @@ public extension Project {
                 disableBundleAccessors: true,
                 disableShowEnvironmentVarsInScriptPhases: false,
                 disableSynthesizedResourceAccessors: true,
-                textSettings: .currencyConverterTextSettings
+                textSettings: .currencyTextSettings
             ),
             settings: .settings(
                 base: baseProjectSettings,

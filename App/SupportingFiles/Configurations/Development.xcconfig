@@ -7,8 +7,18 @@ CODE_SIGN_STYLE = Automatically
 // iOS App
 APP_BUNDLE_ID_MAIN = com.currency.converter.mobile.apps
 
-// Extensions
+// watchOS App
+APP_BUNDLE_ID_WATCH_OS = $(APP_BUNDLE_ID_MAIN).watchkitapp
+
+// visionOS App
+APP_BUNDLE_ID_VISIONOS = $(APP_BUNDLE_ID_MAIN)
+
+// macOS App
+APP_BUNDLE_ID_MACOS = $(APP_BUNDLE_ID_MAIN)
+
+// Used within entitlements for com.apple.security.application-groups and Info.plist for App_Group_Id key
+APP_GROUP_ID = group.$(APP_BUNDLE_ID_MAIN)
 
 // App Version
 MARKETING_VERSION = 1.0.0
-BUNDLE_VERSION = 1
+BUNDLE_VERSION = 28

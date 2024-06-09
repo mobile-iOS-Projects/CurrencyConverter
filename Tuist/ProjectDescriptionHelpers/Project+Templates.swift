@@ -12,7 +12,7 @@ public let workspaceBaseId = "com.currency.converter.mobile.apps"
 
 public extension Destinations {
     /// The destinations we support for the given set of platform
-    static func currencyConverterDestinations(for platforms: Set<Platform>) -> Destinations {
+    static func currencyDestinations(for platforms: Set<Platform>) -> Destinations {
         var set: Destinations = []
         if platforms.contains(.iOS) {
             set.formUnion([.iPhone, .iPad])
@@ -25,6 +25,10 @@ public extension Destinations {
         if platforms.contains(.visionOS) {
             set.insert(.appleVision)
         }
+        
+        if platforms.contains(.macOS) {
+            set.insert(.macCatalyst)
+        }
 
         return set
     }
@@ -32,7 +36,7 @@ public extension Destinations {
 
 public extension DeploymentTargets {
     // The deployment targets we support for the given set of platforms
-    static func currencyConverterDeploymentTargets(for platforms: Set<Platform>) -> DeploymentTargets {
+    static func currencyDeploymentTargets(for platforms: Set<Platform>) -> DeploymentTargets {
         var iOS: String? = nil
         var watchOS: String? = nil
         var visionOS: String? = nil
@@ -49,6 +53,10 @@ public extension DeploymentTargets {
             visionOS = "1.1"
         }
 
-        return .multiplatform(iOS: iOS, watchOS: watchOS, visionOS: visionOS)
+        return .multiplatform(
+            iOS: iOS,
+            watchOS: watchOS,
+            visionOS: visionOS
+        )
     }
 }

@@ -5,11 +5,11 @@ let project: Project = .microFeatureProject(
     name: "Networking",
     type: .foundation,
     targets: [
-        .interface(),
         .implementation(
             dependencies: [
+                .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
             ]
         ),
     ],
-    platforms: [.iOS]
+    platforms: [.iOS, .visionOS, .watchOS, .macOS]
 )
