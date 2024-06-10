@@ -8,6 +8,7 @@ let project: Project = .microFeatureProject(
         .interface(),
         .implementation(
             dependencies: [
+                .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI"))
             ]
         ),
     ],
