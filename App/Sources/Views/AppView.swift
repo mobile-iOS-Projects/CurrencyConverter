@@ -3,6 +3,7 @@ import Factory
 #if !os(visionOS)
 import SwiftUIIntrospect
 #endif
+import CurrencyCore
 
 @MainActor
 struct AppView: View {

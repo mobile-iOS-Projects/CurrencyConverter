@@ -8,7 +8,7 @@
 import Foundation
 
 struct Currency: Identifiable, Equatable, Hashable {
-    var id: String { code }
+    var id: String
 
     let code: String
     let rate: Double

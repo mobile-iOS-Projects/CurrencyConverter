@@ -9,6 +9,7 @@ import AppIntents
 import SwiftData
 import SwiftUI
 import Conversion
+import CurrencyCore
 
 extension CurrencyConverterApp {
     var appScene: some Scene {
@@ -17,7 +18,7 @@ extension CurrencyConverterApp {
                 .onAppear {
                     print("onAppear")
                 }
-                .modelContainer(for: ConversionsCountries.self)
+//                .modelContainer(for: ConversionsCountries.self)
         }
         #if targetEnvironment(macCatalyst)
         .defaultSize(width: 1100, height: 1400)

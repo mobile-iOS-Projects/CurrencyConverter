@@ -1,5 +1,5 @@
 //
-//  Tab.swift
+//  SortingTab.swift
 //  Conversion
 //
 //  Created by Siarhei Runovich on 11.06.24.

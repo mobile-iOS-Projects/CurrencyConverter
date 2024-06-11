@@ -5,158 +5,197 @@
 //  Created by Siarhei Runovich on 3.06.24.
 //
 
+import CurrencyCore
+import CurrencyCoreUI
 import SwiftData
 import SwiftUI
 
 public struct ConversionScreen: View {
-    @State var searchText = ""
-    @State var activeTab: SortingTab = .defaultSort
+    // MARK: - State Properties
+    @State private var viewModel = ConversionScreenViewModel()
+
+    // MARK: - FocusState Properties
     @FocusState private var isSearching: Bool
-    @Environment(\.colorScheme) var scheme
+
+    // MARK: - Environment Properties
+    @Environment(\.colorScheme) private var scheme
+    @Environment(\.modelContext) private var modelContext
+    @Environment(RouterPath.self) private var routerPath
+
+    // MARK: - Namespace Properties
     @Namespace private var animation
 
-    @State var viewModel = ConversionScreenViewModel()
-    @Environment(\.modelContext) var modelContext
+    // MARK: - Private Properties
+    // Nav Bar Height includes all paddings and calculations
+    let navBarHeight: CGFloat = 190
+    // Search Bar Height
+    let searchBarViewHeight: CGFloat = 45
 
+    // MARK: - Initialise
     public init() {}
 
+    // MARK: - Body
     public var body: some View {
         ScrollView(.vertical) {
             LazyVStack(spacing: 15) {
-                dummyMessagesView()
+                if viewModel.sortedCurrencies().isEmpty {
+                #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+                    CurrencyContentUnavailableView(
+                        LocalizedStringKey("Nothing found"),
+                        subtitle: LocalizedStringKey("Try a different search"),
+                        image: Image(smsIllustration: .simpleEmptyDoc, variant: .xl)
+                    )
+                    .frame(maxWidth: 320)
+                #endif
+                } else {
+                    currencyView()
+                        .onTapGesture {
+                            // Open conversion details sheet
+                            routerPath.presentedSheet = .conversionDetailsView
+                        }
+                }
             }
             .safeAreaPadding(15)
             .safeAreaInset(edge: .top, spacing: 0) {
-                expandableBavigationBar()
+                expandableNavigationBar()
             }
             .animation(.snappy(duration: 0.3, extraBounce: 0), value: isSearching)
         }
         .scrollTargetBehavior(CustomScrolltargetBehaviour())
         .background(.gray.opacity(0.15))
-        .contentMargins(.top, 190, for: .scrollIndicators)
-        .onAppear {
-            viewModel.getCurrencyData()
+        .contentMargins(.top, navBarHeight, for: .scrollIndicators)
+        .disabled(viewModel.isShimmering)
+        .refreshable {
+            viewModel.refreshConversion()
         }
     }
 }
 
+// MARK: - Expandable Navigation Bar
 extension ConversionScreen {
-    /// Expandable Navigation Bar
     @ViewBuilder
-    func expandableBavigationBar() -> some View {
+    private func expandableNavigationBar() -> some View {
         GeometryReader { proxy in
             let minY = proxy.frame(in: .scrollView(axis: .vertical)).minY
             let scrollViewHeight = proxy.bounds(of: .scrollView(axis: .vertical))?.height ?? 0
-            let scaleProgress = minY > 0 ? 1 + (max(min(minY / scrollViewHeight, 1), 0) * 0.5) : 1
-            let progress = isSearching ? 1 : max(min(-minY / 70, 1), 0)
+            let scaleProgress = calculateScaleProgress(minY: minY, scrollViewHeight: scrollViewHeight)
+            let progress = calculateProgress(minY: minY)
 
             VStack(spacing: 10) {
-                // Title
-                Text("\(CurrencyCountryType.unitedStatesDollar.fullName)")
-                    .font(.largeTitle.bold())
-                    .scaleEffect(scaleProgress, anchor: .topLeading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.bottom, 10)
-
-                // Search Bar
-                HStack(spacing: 12) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.title3)
-                    TextField("Search Countries", text: $searchText)
-                        .focused($isSearching)
-
-                    if isSearching {
-                        Button(action: {
-                            isSearching = false
-                            searchText = ""
-                        }) {
-                            Image(systemName: "xmark")
-                                .font(.title3)
-                        }
-                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
-                    }
-                }
-                .foregroundStyle(Color.primary)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 15 - (progress * 15))
-                .frame(height: 45)
-                .clipShape(.capsule)
-                .background {
-                    RoundedRectangle(cornerRadius: 25 - (progress * 25))
-                        .fill(.background)
-                        .shadow(color: .gray.opacity(0.25), radius: 5, x: 0, y: 5)
-                        .padding(.top, -progress * 190)
-                        .padding(.bottom, -progress * 65)
-                        .padding(.horizontal, -progress * 15)
-                }
-
-                // Custom Segmented Picker
-                ScrollView(.horizontal) {
-                    HStack(spacing: 12) {
-                        ForEach(SortingTab.allCases, id: \.rawValue) { tab in
-                            Button(action: {
-                                withAnimation(.snappy) {
-                                    activeTab = tab
-                                }
-                            }) {
-                                Text(tab.rawValue)
-                                    .font(.callout)
-                                    .foregroundStyle(activeTab == tab ? (scheme == .dark ? .black : .white) : Color.primary)
-                                    .padding(.vertical, 8)
-                                    .padding(.horizontal, 15)
-                                    .background {
-                                        if activeTab == tab {
-                                            Capsule()
-                                                .fill(Color.primary)
-                                                .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
-                                        } else {
-                                            Capsule()
-                                                .fill(.background)
-                                        }
-                                    }
-                            }
-                            .buttonStyle(.plain)
-                        }
-                    }
-                }
+                titleView(scaleProgress: scaleProgress)
+                searchBarView(progress: progress)
+                segmentedPickerView()
             }
             .padding(.top, 25)
             .safeAreaPadding(.horizontal, 15)
-            .offset(y: minY < 0 || isSearching ? -minY : 0)
-            .offset(y: -progress * 65)
+            .offset(y: calculateVerticalOffset(minY: minY, progress: progress))
         }
-        .frame(height: 190)
-        .padding(.bottom, 10)
-        .padding(.bottom, isSearching ? -65 : 0)
+        .frame(height: navBarHeight)
+        .padding(.bottom, calculateBottomPadding())
     }
 
-    /// Dummy Messages View
+    // Calculate the scale progress for the title
+    private func calculateScaleProgress(minY: CGFloat, scrollViewHeight: CGFloat) -> CGFloat {
+        return minY > 0 ? 1 + (max(min(minY / scrollViewHeight, 1), 0) * 0.5) : 1
+    }
+
+    // Calculate the progress for the search bar animation
+    private func calculateProgress(minY: CGFloat) -> CGFloat {
+        return isSearching ? 1 : max(min(-minY / 70, 1), 0)
+    }
+
+    // Calculate the vertical offset based on scroll position and search status
+    private func calculateVerticalOffset(minY: CGFloat, progress: CGFloat) -> CGFloat {
+        return (minY < 0 || isSearching ? -minY : 0) - (progress * 65)
+    }
+
+    // Calculate the bottom padding based on search status
+    private func calculateBottomPadding() -> CGFloat {
+        return 10 + (isSearching ? -65 : 0)
+    }
+
     @ViewBuilder
-    func dummyMessagesView() -> some View {
-        ForEach(sortedCurrencies()) { currency in
-            CurrencyCell(currency: currency)
-        }
+    private func titleView(scaleProgress: CGFloat) -> some View {
+        Text("\(CurrencyCountryType.unitedStatesDollar.fullName) \(CurrencyCountryType.unitedStatesDollar.emoji)")
+            .font(.largeTitle.bold())
+            .scaleEffect(scaleProgress, anchor: .topLeading)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.bottom, 10)
     }
 
-    func sortedCurrencies() -> [Currency] {
-        var filtered = viewModel.currency
+    @ViewBuilder
+    private func searchBarView(progress: CGFloat) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: "magnifyingglass")
+                .font(.title3)
+            TextField("Search Countries", text: $viewModel.searchText)
+                .focused($isSearching)
 
-        if !searchText.isEmpty {
-            filtered = filtered.filter {
-                $0.fullName.localizedCaseInsensitiveContains(searchText) ||
-                $0.code.localizedCaseInsensitiveContains(searchText)
+            if isSearching {
+                Button(action: {
+                    isSearching = false
+                    viewModel.searchText = ""
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.title3)
+                }
+                .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
             }
         }
-    
-        return switch activeTab {
-        case .name:
-            filtered.sorted { $0.fullName.rawValue < $1.fullName.rawValue }
-        case .rateAscending:
-            filtered.sorted { $0.rate < $1.rate }
-        case .rateDescending:
-            filtered.sorted { $0.rate > $1.rate }
-        case .defaultSort:
-            filtered
+        .foregroundStyle(Color.primary)
+        .padding(.vertical, 10)
+        .padding(.horizontal, 15 - (progress * 15))
+        .frame(height: searchBarViewHeight)
+        .clipShape(Capsule())
+        .background {
+            RoundedRectangle(cornerRadius: 25 - (progress * 25))
+                .fill(.background)
+                .shadow(color: .gray.opacity(0.25), radius: 5, x: 0, y: 5)
+                .padding(.top, -progress * navBarHeight)
+                .padding(.bottom, -progress * 65)
+                .padding(.horizontal, -progress * 15)
+        }
+    }
+
+    @ViewBuilder
+    private func segmentedPickerView() -> some View {
+        ScrollView(.horizontal) {
+            HStack(spacing: 12) {
+                ForEach(SortingTab.allCases, id: \.rawValue) { tab in
+                    Button(action: {
+                        withAnimation(.snappy) {
+                            viewModel.activeTab = tab
+                        }
+                    }) {
+                        Text(tab.rawValue)
+                            .font(.callout)
+                            .foregroundStyle(viewModel.activeTab == tab ? (scheme == .dark ? .black : .white) : Color.primary)
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 15)
+                            .background {
+                                if viewModel.activeTab == tab {
+                                    Capsule()
+                                        .fill(Color.primary)
+                                        .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
+                                } else {
+                                    Capsule()
+                                        .fill(.background)
+                                }
+                            }
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+    }
+}
+
+// MARK: - Currency View
+extension ConversionScreen {
+    @ViewBuilder
+    private func currencyView() -> some View {
+        ForEach(viewModel.sortedCurrencies()) { currency in
+            CurrencyView(currency: currency, isShimmering: viewModel.isShimmering)
         }
     }
 }

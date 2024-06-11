@@ -8,9 +8,9 @@
 import Foundation
 
 enum CurrencyCountryType: String, CaseIterable {
-    case belarusianRuble = "BYN"
     case unitedStatesDollar = "USD"
     case euro = "EUR"
+    case belarusianRuble = "BYN"
     case russianRuble = "RUB"
     case polishZloty = "PLN"
     case ucrainianHryvnia = "UAH"
