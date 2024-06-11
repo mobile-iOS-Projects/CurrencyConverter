@@ -18,7 +18,7 @@ extension CurrencyConverterApp {
                 .onAppear {
                     print("onAppear")
                 }
-//                .modelContainer(for: ConversionsCountries.self)
+                .modelContainer(for: SavedCurrency.self)
         }
         #if targetEnvironment(macCatalyst)
         .defaultSize(width: 1100, height: 1400)

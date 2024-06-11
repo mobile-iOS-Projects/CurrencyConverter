@@ -5,18 +5,18 @@
 //  Created by Siarhei Runovich on 10.06.24.
 //
 
+import Combine
+import CurrencyCore
 import Foundation
 import Networking
-import CurrencyCore
-import Combine
+import SwiftData
 
-@Observable
-final class ConversionScreenViewModel {
+final public class ConversionScreenViewModel: ObservableObject {
     // MARK: - Published Properties
-    var conversion: Loadable<[Currency], Error> = .initial
-    var showErrorView: Bool = false
-    var searchText = ""
-    var activeTab: SortingTab = .defaultSort
+    @Published var conversion: Loadable<[Currency], Error> = .initial
+    @Published var showErrorView: Bool = false
+    @Published var searchText = ""
+    @Published var activeTab: SortingTab = .defaultSort
 
     // MARK: - Private Properties
     private let networking = Networking()
@@ -33,8 +33,14 @@ final class ConversionScreenViewModel {
         }
     }
 
-    init() {
-        getCurrencyData()
+    // MARK: - Initialise
+    public init() {
+//        getCurrencyData()
+        print("init ConversionScreenViewModel")
+    }
+
+    deinit {
+        print("deinit ConversionScreenViewModel")
     }
 }
 
@@ -72,7 +78,7 @@ extension ConversionScreenViewModel {
 
 // MARK: - Private Methods
 extension ConversionScreenViewModel {
-   private func getCurrencyData() {
+    private func getCurrencyData() {
         Task {
             try await Task.sleep(seconds: 3)
             do {
@@ -87,10 +93,39 @@ extension ConversionScreenViewModel {
                     .map {
                         Currency(id: $0.rawValue, code: $0.rawValue, rate: results.rates.getRate(of: $0.rawValue))
                     }
-                conversion = .value(currency)
+                await MainActor.run {
+                    conversion = .value(currency)
+                }
             } catch {
                 print("error: \(error.localizedDescription)")
             }
         }
     }
+
+    func saveCurrencies(data: [Currency], to modelContext: ModelContext) {
+        let savedCurrencies = try? modelContext.fetch(FetchDescriptor<SavedCurrency>())
+        savedCurrencies?.forEach({ modelContext.delete($0) })
+
+        data.forEach { item in
+            let newSaved = SavedCurrency(id: item.code, code: item.code,  rate: item.rate)
+            modelContext.insert(newSaved)
+            print("Saved \(item.code) to SwiftData")
+        }
+    }
+
+    func getCurrencies(from modelContext: ModelContext) -> [Currency] {
+        do {
+            let savedCurrencies = try modelContext.fetch(FetchDescriptor<SavedCurrency>())
+            
+            let currencies = savedCurrencies
+                .map { Currency(id: $0.id, code: $0.code, rate: $0.rate) }
+            
+            print("currencies: \(currencies)")
+            return currencies
+        } catch {
+            print("Error: Fetching currencies failed")
+            return []
+        }
+    }
+    
 }

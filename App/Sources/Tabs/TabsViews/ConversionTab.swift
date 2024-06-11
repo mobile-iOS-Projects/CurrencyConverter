@@ -8,6 +8,7 @@
 import Conversion
 import SwiftUI
 import CurrencyCore
+import Conversion
 
 @MainActor
 struct ConversionTab: View {

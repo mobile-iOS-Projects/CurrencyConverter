@@ -39,25 +39,19 @@ struct AppView: View {
     }
 
     var tabBarView: some View {
-        TabView(selection: .init(get: {
-            selectedTab
-        }, set: { newTab in
-    
-            soundEffectManagerAPI.playSound(.tabSelection)
-            selectedTab = newTab
-        })) {
+        TabView(selection: $selectedTab) {
             ForEach(availableTabs) { tab in
                 tab.makeContentView(selectedTab: $selectedTab)
                     .tabItem {
-                        Image(systemName: tab.iconName)
+                        tab.label
                     }
                     .tag(tab)
                     .toolbarBackground(.visible, for: .tabBar)
             }
+        }.onChange(of: selectedTab) { oldvalue, newValue in
+            soundEffectManagerAPI.playSound(.tabSelection)
+            print("Изменение таба: \(newValue)")
         }
-//        .id(UUID())
-//        .frame(width: 100, height: 100)
-//        .withSheetDestinations(sheetDestinations: $appRouterPath.presentedSheet)
     }
     
 #if !os(visionOS)

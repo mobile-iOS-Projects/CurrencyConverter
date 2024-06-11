@@ -12,7 +12,7 @@ import SwiftUI
 
 public struct ConversionScreen: View {
     // MARK: - State Properties
-    @State private var viewModel = ConversionScreenViewModel()
+    @StateObject private var viewModel = ConversionScreenViewModel()
 
     // MARK: - FocusState Properties
     @FocusState private var isSearching: Bool
@@ -21,6 +21,8 @@ public struct ConversionScreen: View {
     @Environment(\.colorScheme) private var scheme
     @Environment(\.modelContext) private var modelContext
     @Environment(RouterPath.self) private var routerPath
+    
+    @Query var savedCurrencies: [SavedCurrency]
 
     // MARK: - Namespace Properties
     @Namespace private var animation
@@ -32,21 +34,23 @@ public struct ConversionScreen: View {
     let searchBarViewHeight: CGFloat = 45
 
     // MARK: - Initialise
-    public init() {}
+    public init() {
+       print("init ConversionScreenView")
+    }
 
     // MARK: - Body
     public var body: some View {
         ScrollView(.vertical) {
             LazyVStack(spacing: 15) {
                 if viewModel.sortedCurrencies().isEmpty {
-                #if os(iOS) || os(visionOS) || targetEnvironment(macCatalyst)
+                    #if !os(watchOS)
                     CurrencyContentUnavailableView(
                         LocalizedStringKey("Nothing found"),
                         subtitle: LocalizedStringKey("Try a different search"),
                         image: Image(smsIllustration: .simpleEmptyDoc, variant: .xl)
                     )
                     .frame(maxWidth: 320)
-                #endif
+                    #endif
                 } else {
                     currencyView()
                         .onTapGesture {
@@ -65,6 +69,13 @@ public struct ConversionScreen: View {
         .background(.gray.opacity(0.15))
         .contentMargins(.top, navBarHeight, for: .scrollIndicators)
         .disabled(viewModel.isShimmering)
+        .onAppear {
+            viewModel.conversion = .value( viewModel.getCurrencies(from: modelContext))
+        }
+        .onChange(of: viewModel.conversion.value) {
+            viewModel.saveCurrencies(data: viewModel.conversion.value ?? [], to: modelContext)
+            print("value changed")
+        }
         .refreshable {
             viewModel.refreshConversion()
         }
@@ -96,22 +107,22 @@ extension ConversionScreen {
 
     // Calculate the scale progress for the title
     private func calculateScaleProgress(minY: CGFloat, scrollViewHeight: CGFloat) -> CGFloat {
-        return minY > 0 ? 1 + (max(min(minY / scrollViewHeight, 1), 0) * 0.5) : 1
+        minY > 0 ? 1 + (max(min(minY / scrollViewHeight, 1), 0) * 0.5) : 1
     }
 
     // Calculate the progress for the search bar animation
     private func calculateProgress(minY: CGFloat) -> CGFloat {
-        return isSearching ? 1 : max(min(-minY / 70, 1), 0)
+        isSearching ? 1 : max(min(-minY / 70, 1), 0)
     }
 
     // Calculate the vertical offset based on scroll position and search status
     private func calculateVerticalOffset(minY: CGFloat, progress: CGFloat) -> CGFloat {
-        return (minY < 0 || isSearching ? -minY : 0) - (progress * 65)
+        (minY < 0 || isSearching ? -minY : 0) - (progress * 65)
     }
 
     // Calculate the bottom padding based on search status
     private func calculateBottomPadding() -> CGFloat {
-        return 10 + (isSearching ? -65 : 0)
+        10 + (isSearching ? -65 : 0)
     }
 
     @ViewBuilder
@@ -128,7 +139,7 @@ extension ConversionScreen {
         HStack(spacing: 12) {
             Image(systemName: "magnifyingglass")
                 .font(.title3)
-            TextField("Search Countries", text: $viewModel.searchText)
+            TextField("Search Countries", text: .constant("test"))
                 .focused($isSearching)
 
             if isSearching {
