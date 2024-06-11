@@ -8,8 +8,9 @@ let project: Project = .microFeatureProject(
         .interface(),
         .implementation(
             dependencies: [
+                .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking"))
             ]
         ),
     ],
-    platforms: [.iOS, .visionOS, .watchOS, .macOS]
+    platforms: [.iOS, .watchOS, .macOS, .visionOS]
 )

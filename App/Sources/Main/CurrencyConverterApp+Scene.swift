@@ -6,7 +6,9 @@
 //
 
 import AppIntents
+import SwiftData
 import SwiftUI
+import Conversion
 
 extension CurrencyConverterApp {
     var appScene: some Scene {
@@ -15,12 +17,15 @@ extension CurrencyConverterApp {
                 .onAppear {
                     print("onAppear")
                 }
+                .modelContainer(for: ConversionsCountries.self)
         }
         #if targetEnvironment(macCatalyst)
         .defaultSize(width: 1100, height: 1400)
         #elseif os(visionOS)
         .defaultSize(width: 800, height: 1200)
+
         #endif
+
         .onChange(of: scenePhase) { _, newValue in
             handleScenePhase(scenePhase: newValue)
         }

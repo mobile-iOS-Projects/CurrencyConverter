@@ -44,7 +44,6 @@ let appTarget: Target = .target(
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
         .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
         .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI")),
-        .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
         .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
@@ -133,7 +132,6 @@ let watchOSAppTarget: Target = .target(
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
         .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
         .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI")),
-        .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
         .external(name: "Factory"),
     ],
     settings: .settings(
@@ -188,8 +186,8 @@ let visionOSAppTarget: Target = .target(
         .project(target: "Settings", path: .relativeToRoot("Features/Settings")),
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
         .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
+        .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
         .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI")),
-        .project(target: "SwiftData", path: .relativeToRoot("Features/Foundation/SwiftData")),
         .external(name: "Factory"),
     ],
     settings: .settings(
@@ -239,6 +237,7 @@ let macOSAppTarget: Target = .target(
         .project(target: "News", path: .relativeToRoot("Features/News")),
         .project(target: "Settings", path: .relativeToRoot("Features/Settings")),
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
+        .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
     ],

@@ -7,6 +7,7 @@
 
 import AVFAudio
 import SwiftUI
+import SwiftData
 
 @main
 struct CurrencyConverterApp: App {
