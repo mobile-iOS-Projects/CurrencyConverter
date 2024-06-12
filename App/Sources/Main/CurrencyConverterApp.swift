@@ -9,9 +9,10 @@ import AVFAudio
 import SwiftUI
 import SwiftData
 import CurrencyCore
+import Env
 
 @main
-struct CurrencyConverterApp: App {
+ struct CurrencyConverterApp: App {
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
 
     @Environment(\.scenePhase) var scenePhase
@@ -19,6 +20,7 @@ struct CurrencyConverterApp: App {
 
     @State var selectedTab: Tab = .conversion
     @State var appRouterPath = RouterPath()
+    @State var networkMonitor = NetworkMonitor()
 
     var body: some Scene {
         appScene

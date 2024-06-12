@@ -1,4 +1,5 @@
 import SwiftUI
+import Env
 import Factory
 #if !os(visionOS)
 import SwiftUIIntrospect
@@ -13,6 +14,7 @@ struct AppView: View {
 
     @Binding var selectedTab: Tab
     @Binding var appRouterPath: RouterPath
+    @Binding var networkMonitor: NetworkMonitor
 
     @State var iosTabs = iOSTabs.shared
     @State var sidebarTabs = SidebarTabs.shared
@@ -48,7 +50,9 @@ struct AppView: View {
                     .tag(tab)
                     .toolbarBackground(.visible, for: .tabBar)
             }
-        }.onChange(of: selectedTab) { oldvalue, newValue in
+        }
+        .environment(networkMonitor)
+        .onChange(of: selectedTab) { oldvalue, newValue in
             soundEffectManagerAPI.playSound(.tabSelection)
             print("Изменение таба: \(newValue)")
         }

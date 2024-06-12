@@ -14,7 +14,7 @@ import CurrencyCore
 extension CurrencyConverterApp {
     var appScene: some Scene {
         WindowGroup(id: "MainWindow") {
-            AppView(selectedTab: $selectedTab, appRouterPath: $appRouterPath)
+            AppView(selectedTab: $selectedTab, appRouterPath: $appRouterPath, networkMonitor: $networkMonitor)
                 .onAppear {
                     print("onAppear")
                 }

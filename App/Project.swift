@@ -126,7 +126,6 @@ let watchOSAppTarget: Target = .target(
     entitlements: .file(path: "Extensions/watchOS/SupportingFiles/CurrencyWatchApp.entitlements"),
     scripts: Environment.isScriptsIncluded() ? [watchOSSwiftformatScript, watchOSSwiftlintScript] : [],
     dependencies: [
-        .project(target: "Conversion", path: .relativeToRoot("Features/Conversion")),
         .project(target: "News", path: .relativeToRoot("Features/News")),
         .project(target: "Settings", path: .relativeToRoot("Features/Settings")),
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),

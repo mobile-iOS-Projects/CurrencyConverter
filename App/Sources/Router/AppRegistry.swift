@@ -2,6 +2,7 @@
 import SwiftUI
 import ConversionAPI
 import CurrencyCore
+import Conversion
 
 @MainActor
 extension View {

@@ -9,6 +9,7 @@ import CurrencyCore
 import CurrencyCoreUI
 import SwiftData
 import SwiftUI
+import Env
 
 public struct ConversionScreen: View {
     // MARK: - State Properties
@@ -21,8 +22,7 @@ public struct ConversionScreen: View {
     @Environment(\.colorScheme) private var scheme
     @Environment(\.modelContext) private var modelContext
     @Environment(RouterPath.self) private var routerPath
-    
-    @Query var savedCurrencies: [SavedCurrency]
+    @Environment(NetworkMonitor.self) private var networkMonitor
 
     // MARK: - Namespace Properties
     @Namespace private var animation
@@ -35,7 +35,8 @@ public struct ConversionScreen: View {
 
     // MARK: - Initialise
     public init() {
-       print("init ConversionScreenView")
+        
+        print("init ConversionScreenVie")
     }
 
     // MARK: - Body
@@ -44,12 +45,16 @@ public struct ConversionScreen: View {
             LazyVStack(spacing: 15) {
                 if viewModel.sortedCurrencies().isEmpty {
                     #if !os(watchOS)
-                    CurrencyContentUnavailableView(
-                        LocalizedStringKey("Nothing found"),
-                        subtitle: LocalizedStringKey("Try a different search"),
-                        image: Image(smsIllustration: .simpleEmptyDoc, variant: .xl)
-                    )
-                    .frame(maxWidth: 320)
+                    VStack {
+                        Text("Nothing found")
+                        Text("Try a different search")
+                    }
+//                    CurrencyContentUnavailableView(
+//                        LocalizedStringKey("Nothing found"),
+//                        subtitle: LocalizedStringKey("Try a different search"),
+//                        image: Image(smsIllustration: .simpleEmptyDoc, variant: .xl)
+//                    )
+//                    .frame(maxWidth: 320)
                     #endif
                 } else {
                     currencyView()
@@ -70,11 +75,11 @@ public struct ConversionScreen: View {
         .contentMargins(.top, navBarHeight, for: .scrollIndicators)
         .disabled(viewModel.isShimmering)
         .onAppear {
-            viewModel.conversion = .value( viewModel.getCurrencies(from: modelContext))
+            print("init ConversionScreenView: \(networkMonitor)")
+            viewModel.getCurrencies(from: modelContext)
         }
         .onChange(of: viewModel.conversion.value) {
             viewModel.saveCurrencies(data: viewModel.conversion.value ?? [], to: modelContext)
-            print("value changed")
         }
         .refreshable {
             viewModel.refreshConversion()
@@ -139,7 +144,7 @@ extension ConversionScreen {
         HStack(spacing: 12) {
             Image(systemName: "magnifyingglass")
                 .font(.title3)
-            TextField("Search Countries", text: .constant("test"))
+            TextField("Search Countries", text: $viewModel.searchText)
                 .focused($isSearching)
 
             if isSearching {
