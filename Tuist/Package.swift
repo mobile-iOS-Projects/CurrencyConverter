@@ -10,7 +10,8 @@ import PackageDescription
     let packageSettings = PackageSettings(
         productTypes: [ // Convert 3rd party frameworks into dynamic frameworks
             "Factory": .framework,
-            "SwiftUIIntrospect": .framework
+            "SwiftUIIntrospect": .framework,
+            "ComposableArchitecture": .framework,
         ],
         baseSettings: .settings(
             base: [:],
@@ -19,7 +20,8 @@ import PackageDescription
         ),
         targetSettings: [
             "Factory": frameworkBaseSettings.applicationExtensionAPIOnly(true),
-            "SwiftUIIntrospect": frameworkBaseSettings
+            "SwiftUIIntrospect": frameworkBaseSettings,
+            "ComposableArchitecture": frameworkBaseSettings
         ]
     )
 #endif
@@ -29,6 +31,7 @@ let package = Package(
     dependencies: [
         // true 3rd Party Dependencies
         .package(url: "https://github.com/hmlongco/Factory", from: "2.3.2"),
-        .package(url: "https://github.com/siteline/swiftui-introspect", from: "1.1.4")
+        .package(url: "https://github.com/siteline/swiftui-introspect", from: "1.1.4"),
+        .package(url: "https://github.com/pointfreeco/swift-composable-architecture", from: "1.11.1")
     ]
 )

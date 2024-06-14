@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 public struct ConversionDetailsScreen: View {
     public init() {}

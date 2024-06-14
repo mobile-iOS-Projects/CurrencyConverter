@@ -47,7 +47,7 @@ let appTarget: Target = .target(
         .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
-        
+        .external(name: "ComposableArchitecture"),
         .target(name: "watchOS", condition: .when([.ios])),
     ],
     settings: .settings(
@@ -126,8 +126,6 @@ let watchOSAppTarget: Target = .target(
     entitlements: .file(path: "Extensions/watchOS/SupportingFiles/CurrencyWatchApp.entitlements"),
     scripts: Environment.isScriptsIncluded() ? [watchOSSwiftformatScript, watchOSSwiftlintScript] : [],
     dependencies: [
-        .project(target: "News", path: .relativeToRoot("Features/News")),
-        .project(target: "Settings", path: .relativeToRoot("Features/Settings")),
         .project(target: "Networking", path: .relativeToRoot("Features/Foundation/Networking")),
         .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
         .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI")),

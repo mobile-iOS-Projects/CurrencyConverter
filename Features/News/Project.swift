@@ -8,8 +8,9 @@ let project: Project = .microFeatureProject(
         .interface(),
         .implementation(
             dependencies: [
+                .external(name: "ComposableArchitecture")
             ]
         ),
     ],
-    platforms: [.iOS, .visionOS, .watchOS, .macOS]
+    platforms: [.iOS, .visionOS, .macOS]
 )

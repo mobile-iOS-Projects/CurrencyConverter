@@ -12,7 +12,8 @@ let project: Project = .microFeatureProject(
                 .project(target: "CurrencyCore", path: .relativeToRoot("Features/Foundation/CurrencyCore")),
                 .project(target: "CurrencyCoreUI", path: .relativeToRoot("Features/Foundation/CurrencyCoreUI")),
                 .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
-                .external(name: "Factory")
+                .external(name: "Factory"),
+                .external(name: "ComposableArchitecture"),
             ]
         ),
     ],
