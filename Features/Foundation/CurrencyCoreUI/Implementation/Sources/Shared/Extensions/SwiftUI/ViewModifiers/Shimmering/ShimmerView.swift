@@ -136,13 +136,11 @@ extension View {
     ) -> some View {
         if active {
             #if !os(visionOS)
-            
                 self.modifier(Shimmer_v4(
                     animation: Shimmer_v4.defaultAnimation,
                     gradient: Shimmer_v4.defaultGradient,
                     bandSize: Shimmer_v4.defaultBandSize
                 ))
-            
             #else
             self.modifier(Shimmer_v4(
                 animation: Shimmer_v4.defaultAnimation,
@@ -158,11 +156,18 @@ extension View {
 
 struct Shimmer_Previews: PreviewProvider {
     static var previews: some View {
-        Text("Hello World")
-            .font(.title)
+        HStack {
+            Rectangle().frame(width: 40, height: 40, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            VStack {
+                Text("Hello World")
+                    .font(.title)
+                
+                Text("Hello World")
+            }
+        }
 //            .foregroundColor(.preferredSMSColor(for: .primaryLabel))
-            .redacted(reason: .placeholder)
-            .shimmering()
+        .redacted(reason: .placeholder)
+            .shimmering(active: false)
             .previewLayout(.sizeThatFits)
     }
 }

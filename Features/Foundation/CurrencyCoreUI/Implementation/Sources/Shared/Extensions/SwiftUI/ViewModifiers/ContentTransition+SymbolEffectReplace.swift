@@ -19,12 +19,7 @@ extension View {
 
 private struct ContentReplaceSymbolEffectReplace: ViewModifier {
     func body(content: Content) -> some View {
-        #warning("Remove workaround when dropping iOS16 support")
-        if #available(iOS 17.0, watchOS 10, *) {
-            content
-                .contentTransition(.symbolEffect(.replace, options: .speed(2.0)))
-        } else {
-            content
-        }
+        content
+            .contentTransition(.symbolEffect(.replace, options: .speed(2.0)))
     }
 }

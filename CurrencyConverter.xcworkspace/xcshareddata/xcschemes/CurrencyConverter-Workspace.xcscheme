@@ -210,20 +210,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4CB5B0D89408471C8191ACE1"
-               BuildableName = "SwiftData.framework"
-               BlueprintName = "SwiftData"
-               ReferencedContainer = "container:Features/Foundation/SwiftData/SwiftData.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C0B66C9F607B0D0E419B8581"
                BuildableName = "SwiftUIIntrospect.framework"
                BlueprintName = "SwiftUIIntrospect"

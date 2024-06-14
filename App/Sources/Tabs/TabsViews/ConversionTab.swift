@@ -7,6 +7,8 @@
 
 import Conversion
 import SwiftUI
+import CurrencyCore
+import Conversion
 
 @MainActor
 struct ConversionTab: View {
@@ -22,6 +24,7 @@ struct ConversionTab: View {
             ConversionScreen()
                 .withAppRouter()
                 .withSheetDestinations(sheetDestinations: $routerPath.presentedSheet)
+                .toolbar(.hidden, for: .navigationBar)
         }.environment(routerPath)
     }
 }

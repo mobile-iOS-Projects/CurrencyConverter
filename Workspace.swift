@@ -15,7 +15,6 @@ let foundationFeatures: [Path] = [
     "Features/Foundation/Networking",
     "Features/Foundation/CurrencyCore",
     "Features/Foundation/CurrencyCoreUI",
-    "Features/Foundation/SwiftData",
     "Features/Foundation/Env",
 ]
 

@@ -18,14 +18,14 @@ public enum SheetDestination: Identifiable, Hashable {
         hasher.combine(id)
     }
 
-    case conversionList
+    case conversionDetailsView
     case newsList
     case settingsList
 
     public var id: String {
         switch self {
-        case .conversionList:
-            "conversionList"
+        case .conversionDetailsView:
+            "conversionDetailsView"
         case .newsList:
             "newsList"
         case .settingsList:

@@ -2,6 +2,7 @@ import SwiftUI
 #if !os(visionOS) && !targetEnvironment(macCatalyst)
 import SwiftUIIntrospect
 #endif
+import CurrencyCore
 
 @MainActor
 struct SideBarView<Content: View>: View {

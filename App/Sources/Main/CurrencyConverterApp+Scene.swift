@@ -6,21 +6,27 @@
 //
 
 import AppIntents
+import SwiftData
 import SwiftUI
+import Conversion
+import CurrencyCore
 
 extension CurrencyConverterApp {
     var appScene: some Scene {
         WindowGroup(id: "MainWindow") {
-            AppView(selectedTab: $selectedTab, appRouterPath: $appRouterPath)
+            AppView(selectedTab: $selectedTab, appRouterPath: $appRouterPath, networkMonitor: $networkMonitor)
                 .onAppear {
                     print("onAppear")
                 }
+                .modelContainer(for: SavedCurrency.self)
         }
         #if targetEnvironment(macCatalyst)
         .defaultSize(width: 1100, height: 1400)
         #elseif os(visionOS)
         .defaultSize(width: 800, height: 1200)
+
         #endif
+
         .onChange(of: scenePhase) { _, newValue in
             handleScenePhase(scenePhase: newValue)
         }
