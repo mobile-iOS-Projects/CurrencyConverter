@@ -1,24 +1,20 @@
 //
-//  CurrencyConverterApp+Register.swift
-//  App
+//  Conversion+Register.swift
+//  ConversionAPI
 //
-//  Created by Siarhei Runovich on 24.05.24.
+//  Created by Siarhei Runovich on 12.06.24.
 //
 
 import Factory
 import Networking
-import EnvAPI
 import Env
+import EnvAPI
 
 extension Container {
     var networkingAPI: Factory<NetworkingAPI> {
         self { Networking() }
     }
-
-    var soundEffectManagerAPI: Factory<SoundEffectManagerAPI> {
-        self { SoundEffectManager() }
-    }
-
+    
     var networkMonitorAPI: Factory<NetworkMonitorAPI> {
         self { NetworkMonitor() }
     }

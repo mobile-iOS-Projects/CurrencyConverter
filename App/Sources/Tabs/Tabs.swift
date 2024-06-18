@@ -8,7 +8,7 @@
 import SwiftUI
 
 @MainActor
-public enum Tab: Int, Identifiable, Hashable, CaseIterable, Codable {
+public enum Tab: Int, Identifiable, Hashable, CaseIterable, Codable, Equatable {
     case conversion, news, settings
 
     public nonisolated var id: Int {
@@ -35,11 +35,11 @@ public enum Tab: Int, Identifiable, Hashable, CaseIterable, Codable {
     public var title: LocalizedStringKey {
         switch self {
         case .conversion:
-            "tab.timeline"
+            "conversion"
         case .news:
-            "tab.trending"
+            "news"
         case .settings:
-            "tab.local"
+            "settings"
         }
     }
 

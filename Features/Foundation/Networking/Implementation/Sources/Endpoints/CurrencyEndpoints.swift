@@ -8,17 +8,17 @@
 import Foundation
 
 public enum CurrencyEndpoints: EndpointProvider {
-    case getCurrencies
+    case getCurrencies(countryCode: String)
 
     public var path: String {
         switch self {
-        case .getCurrencies:
-            APIConstants.CurrencyAPIConstants.getCurrenciesPath
+        case let .getCurrencies(countryCode):
+            APIConstants.CurrencyAPIConstants.getCurrenciesPath(code: countryCode).getValue
         }
     }
 
     public var baseURL: String {
-        APIConstants.CurrencyAPIConstants.baseURL
+        APIConstants.CurrencyAPIConstants.baseURL.getValue
     }
 
     public var method: RequestMethod {

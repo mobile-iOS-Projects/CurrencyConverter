@@ -40,9 +40,6 @@
          <FileRef
             location = "group:Networking/Networking.xcodeproj">
          </FileRef>
-         <FileRef
-            location = "group:SwiftData/SwiftData.xcodeproj">
-         </FileRef>
       </Group>
    </Group>
    <FileRef

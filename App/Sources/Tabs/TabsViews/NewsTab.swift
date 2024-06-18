@@ -7,6 +7,7 @@
 
 import News
 import SwiftUI
+import CurrencyCore
 
 @MainActor
 struct NewsTab: View {

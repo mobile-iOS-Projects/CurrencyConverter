@@ -1,8 +1,10 @@
 import SwiftUI
+import Env
 import Factory
 #if !os(visionOS)
 import SwiftUIIntrospect
 #endif
+import CurrencyCore
 
 @MainActor
 struct AppView: View {
@@ -12,6 +14,7 @@ struct AppView: View {
 
     @Binding var selectedTab: Tab
     @Binding var appRouterPath: RouterPath
+    @Binding var networkMonitor: NetworkMonitor
 
     @State var iosTabs = iOSTabs.shared
     @State var sidebarTabs = SidebarTabs.shared
@@ -38,25 +41,21 @@ struct AppView: View {
     }
 
     var tabBarView: some View {
-        TabView(selection: .init(get: {
-            selectedTab
-        }, set: { newTab in
-    
-            soundEffectManagerAPI.playSound(.tabSelection)
-            selectedTab = newTab
-        })) {
+        TabView(selection: $selectedTab) {
             ForEach(availableTabs) { tab in
                 tab.makeContentView(selectedTab: $selectedTab)
                     .tabItem {
-                        Image(systemName: tab.iconName)
+                        tab.label
                     }
                     .tag(tab)
                     .toolbarBackground(.visible, for: .tabBar)
             }
         }
-//        .id(UUID())
-//        .frame(width: 100, height: 100)
-//        .withSheetDestinations(sheetDestinations: $appRouterPath.presentedSheet)
+        .environment(networkMonitor)
+        .onChange(of: selectedTab) { oldvalue, newValue in
+            soundEffectManagerAPI.playSound(.tabSelection)
+            print("Изменение таба: \(newValue)")
+        }
     }
     
 #if !os(visionOS)

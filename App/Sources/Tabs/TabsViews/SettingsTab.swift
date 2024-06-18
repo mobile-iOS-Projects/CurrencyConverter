@@ -7,6 +7,7 @@
 
 import Settings
 import SwiftUI
+import CurrencyCore
 
 @MainActor
 struct SettingsTab: View {
