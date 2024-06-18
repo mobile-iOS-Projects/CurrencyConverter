@@ -16,6 +16,7 @@ public struct ConversionScreen: View {
         VStack {
             Rectangle().foregroundStyle(Color.red)
             Text("ConversionScreen").frame(height: 100)
+            Image(currencyIllustration: .simpleConnection, option: .noInternetConnection)
             Rectangle().foregroundStyle(Color.red)
         }
     }
