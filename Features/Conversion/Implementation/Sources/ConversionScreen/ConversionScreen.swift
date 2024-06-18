@@ -5,6 +5,7 @@
 //  Created by Siarhei Runovich on 3.06.24.
 //
 
+
 import CurrencyCore
 import CurrencyCoreUI
 import SwiftData
@@ -12,6 +13,7 @@ import SwiftUI
 import Env
 
 public struct ConversionScreen: View {
+
     // MARK: - State Properties
     @StateObject private var viewModel = ConversionScreenViewModel()
 
