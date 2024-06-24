@@ -1,19 +1,19 @@
 //
-//  ConversionScreen.swift
+//  ConversionView.swift
 //  Conversion
 //
 //  Created by Siarhei Runovich on 3.06.24.
 //
 
+import ComposableArchitecture
 import CurrencyCore
 import CurrencyCoreUI
+import Env
 import SwiftData
 import SwiftUI
-import Env
 
-public struct ConversionScreen: View {
-    // MARK: - State Properties
-    @StateObject private var viewModel = ConversionScreenViewModel()
+public struct ConversionView: View {
+    @Bindable var store: StoreOf<ConversionReducer>
 
     // MARK: - FocusState Properties
     @FocusState private var isSearching: Bool
@@ -21,74 +21,78 @@ public struct ConversionScreen: View {
     // MARK: - Environment Properties
     @Environment(\.colorScheme) private var scheme
     @Environment(\.modelContext) private var modelContext
-    @Environment(RouterPath.self) private var routerPath
-    @Environment(NetworkMonitor.self) private var networkMonitor
 
     // MARK: - Namespace Properties
     @Namespace private var animation
 
     // MARK: - Private Properties
+
     // Nav Bar Height includes all paddings and calculations
     let navBarHeight: CGFloat = 190
+
     // Search Bar Height
     let searchBarViewHeight: CGFloat = 45
 
     // MARK: - Initialise
-    public init() {
-        
-        print("init ConversionScreenVie")
+    public init(store: StoreOf<ConversionReducer>) {
+        self.store = store
     }
 
     // MARK: - Body
     public var body: some View {
-        ScrollView(.vertical) {
-            LazyVStack(spacing: 15) {
-                if viewModel.sortedCurrencies().isEmpty {
-                    #if !os(watchOS)
-                    VStack {
-                        Text("Nothing found")
-                        Text("Try a different search")
-                    }
-//                    CurrencyContentUnavailableView(
-//                        LocalizedStringKey("Nothing found"),
-//                        subtitle: LocalizedStringKey("Try a different search"),
-//                        image: Image(smsIllustration: .simpleEmptyDoc, variant: .xl)
-//                    )
-//                    .frame(maxWidth: 320)
-                    #endif
-                } else {
-                    currencyView()
-                        .onTapGesture {
-                            // Open conversion details sheet
-                            routerPath.presentedSheet = .conversionDetailsView
+        NavigationStack(path: $store.scope(state: \.path, action: \.path)) {
+            ScrollView(.vertical) {
+                LazyVStack(spacing: 15) {
+                    if store.sortedCurrencies.isEmpty {
+                        VStack {
+                            Text("Nothing found")
+                            Text("Try a different search")
                         }
+                    } else {
+                        currencyView()
+                            .onTapGesture {
+                                store.send(.openConversionDetailsView)
+                            }
+                            .onLongPressGesture {
+                                store.send(.openRecentSearchView)
+                            }
+                    }
                 }
+                .safeAreaPadding(15)
+                .safeAreaInset(edge: .top, spacing: 0) {
+                    expandableNavigationBar()
+                }
+                .animation(.snappy(duration: 0.3, extraBounce: 0), value: isSearching)
             }
-            .safeAreaPadding(15)
-            .safeAreaInset(edge: .top, spacing: 0) {
-                expandableNavigationBar()
+            .scrollTargetBehavior(CustomScrolltargetBehaviour())
+            .background(.gray.opacity(0.15))
+            .contentMargins(.top, navBarHeight, for: .scrollIndicators)
+            .disabled(store.isShimmering)
+            .onAppear {
+                store.send(.onViewDidLoad)
             }
-            .animation(.snappy(duration: 0.3, extraBounce: 0), value: isSearching)
+            .refreshable {
+                store.send(.refreshConversion)
+            }
+            .toolbar(.hidden, for: .navigationBar)
+        } destination: { key in
+            switch key.case {
+            case let .recentSearchScreen(test):
+                RecentsSearchView(store: store.scope(state: \.recentSearch, action: \.recentSearchActioon))
+            case let .statisticScreen(test):
+                StatisticView(store: store.scope(state: \.statisticScreen, action: \.statisticAction))
+            }
         }
-        .scrollTargetBehavior(CustomScrolltargetBehaviour())
-        .background(.gray.opacity(0.15))
-        .contentMargins(.top, navBarHeight, for: .scrollIndicators)
-        .disabled(viewModel.isShimmering)
-        .onAppear {
-            print("init ConversionScreenView: \(networkMonitor)")
-            viewModel.getCurrencies(from: modelContext)
-        }
-        .onChange(of: viewModel.conversion.value) {
-            viewModel.saveCurrencies(data: viewModel.conversion.value ?? [], to: modelContext)
-        }
-        .refreshable {
-            viewModel.refreshConversion()
+        .sheet(
+            item: $store.scope(state: \.сonversionDetails, action: \.сonversionDetails)
+        ) { store in
+            ConversionDetailsView(store: store)
         }
     }
 }
 
 // MARK: - Expandable Navigation Bar
-extension ConversionScreen {
+extension ConversionView {
     @ViewBuilder
     private func expandableNavigationBar() -> some View {
         GeometryReader { proxy in
@@ -144,13 +148,17 @@ extension ConversionScreen {
         HStack(spacing: 12) {
             Image(systemName: "magnifyingglass")
                 .font(.title3)
-            TextField("Search Countries", text: $viewModel.searchText)
-                .focused($isSearching)
+            TextField("Search Countries", text: Binding(get: {
+                store.searchText
+            }, set: { value in
+                store.send(.updateSearchText(value))
+            }))
+            .focused($isSearching)
 
             if isSearching {
                 Button(action: {
                     isSearching = false
-                    viewModel.searchText = ""
+                    store.send(.updateSearchText(""))
                 }) {
                     Image(systemName: "xmark")
                         .font(.title3)
@@ -179,17 +187,15 @@ extension ConversionScreen {
             HStack(spacing: 12) {
                 ForEach(SortingTab.allCases, id: \.rawValue) { tab in
                     Button(action: {
-                        withAnimation(.snappy) {
-                            viewModel.activeTab = tab
-                        }
+                        store.send(.changeActiveTab(tab), animation: .snappy)
                     }) {
                         Text(tab.rawValue)
                             .font(.callout)
-                            .foregroundStyle(viewModel.activeTab == tab ? (scheme == .dark ? .black : .white) : Color.primary)
+                            .foregroundStyle(store.activeTab == tab ? (scheme == .dark ? .black : .white) : Color.primary)
                             .padding(.vertical, 8)
                             .padding(.horizontal, 15)
                             .background {
-                                if viewModel.activeTab == tab {
+                                if store.activeTab == tab {
                                     Capsule()
                                         .fill(Color.primary)
                                         .matchedGeometryEffect(id: "ACTIVETAB", in: animation)
@@ -207,15 +213,11 @@ extension ConversionScreen {
 }
 
 // MARK: - Currency View
-extension ConversionScreen {
+extension ConversionView {
     @ViewBuilder
     private func currencyView() -> some View {
-        ForEach(viewModel.sortedCurrencies()) { currency in
-            CurrencyView(currency: currency, isShimmering: viewModel.isShimmering)
+        ForEach(store.sortedCurrencies) { currency in
+            CurrencyView(currency: currency, isShimmering: store.isShimmering)
         }
     }
-}
-
-#Preview {
-    ConversionScreen()
 }

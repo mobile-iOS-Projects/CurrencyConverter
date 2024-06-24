@@ -22,7 +22,8 @@ extension View {
         sheet(item: sheetDestinations) { destination in
             switch destination {
             case .conversionDetailsView:
-                ConversionDetailsScreen()
+                Text("newsList")
+//                ConversionDetailsScreen()
             case .newsList:
                 Text("newsList")
             case .settingsList:

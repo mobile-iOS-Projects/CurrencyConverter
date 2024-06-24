@@ -48,6 +48,7 @@ let appTarget: Target = .target(
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
         .external(name: "ComposableArchitecture"),
+        .external(name: "Lottie"),
         .target(name: "watchOS", condition: .when([.ios])),
     ],
     settings: .settings(

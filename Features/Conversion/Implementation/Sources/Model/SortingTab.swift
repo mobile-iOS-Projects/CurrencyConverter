@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SortingTab: String, CaseIterable {
+public enum SortingTab: String, CaseIterable {
     case defaultSort = "Default"
     case name = "Name"
     case rateAscending = "Rate ↑"

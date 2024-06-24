@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Currency: Identifiable, Equatable, Hashable {
-    var id: String
+public struct Currency: Identifiable, Equatable, Hashable {
+    public var id: String
 
     let code: String
     let rate: Double
