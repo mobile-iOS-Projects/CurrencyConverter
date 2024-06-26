@@ -12,16 +12,16 @@ import Conversion
 struct MainTabView: View {
 
     @Bindable var store: StoreOf<MainTabReducer>
-    
+
     var body: some View {
         TabView(selection: $store.selectedTab) {
             ConversionView(store: store.scope(state: \.conversionView, action: \.conversionView))
-            .tabItem {
-                Tab.conversion.label
-            }
-            .tag(Tab.conversion)
-            .toolbarBackground(.visible, for: .tabBar)
-            .toolbar(.hidden, for: .navigationBar)
+                .tabItem {
+                    Tab.conversion.label
+                }
+                .tag(Tab.conversion)
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbar(.hidden, for: .navigationBar)
 
             Text("News")
                 .tabItem {
@@ -36,6 +36,8 @@ struct MainTabView: View {
                 }
                 .tag(Tab.settings)
                 .toolbarBackground(.visible, for: .tabBar)
+        }.onChange(of: store.selectedTab) {
+            store.send(.playSound)
         }
     }
 }

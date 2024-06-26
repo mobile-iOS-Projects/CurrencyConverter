@@ -18,32 +18,6 @@ public enum Tab: Int, Identifiable, Hashable, CaseIterable, Codable, Equatable {
     }
 
     @ViewBuilder
-    public func makeContentView(selectedTab: Binding<Tab>) -> some View {
-        switch self {
-        case .conversion:
-            ConversionTab(selectedTab: selectedTab)
-        case .news:
-            NewsTab(selectedTab: selectedTab)
-        case .settings:
-            SettingsTab(selectedTab: selectedTab)
-        }
-    }
-
-    @ViewBuilder
-    public func makeContentView() -> some View {
-        switch self {
-        case .conversion:
-            ConversionView(store: Store(initialState: ConversionReducer.State()) {
-                ConversionReducer()
-            })
-        case .news:
-            Text("News")
-        case .settings:
-            Text("Settings")
-        }
-    }
-
-    @ViewBuilder
     public var label: some View {
         Label(title, systemImage: iconName)
     }

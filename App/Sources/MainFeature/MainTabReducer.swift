@@ -8,8 +8,12 @@
 import ComposableArchitecture
 import Foundation
 import Conversion
+import CurrencyCore
+import Factory
 
 @Reducer struct MainTabReducer {
+    @Injected(\.soundEffectManagerAPI) var soundEffectManagerAPI
+
     @ObservableState
     struct State {
         var selectedTab: Tab = .conversion
@@ -21,6 +25,7 @@ import Conversion
         case tabSelected(Tab)
         case binding(BindingAction<State>)
         case conversionView(ConversionReducer.Action)
+        case playSound
     }
 
     var body: some ReducerOf<Self> {
@@ -37,6 +42,9 @@ import Conversion
             case .binding:
                 return .none
             case .conversionView:
+                return .none
+            case .playSound:
+                soundEffectManagerAPI.playSound(.tabSelection)
                 return .none
             }
         }

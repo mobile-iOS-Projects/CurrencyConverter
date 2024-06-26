@@ -43,12 +43,12 @@ struct AppView: View {
     var tabBarView: some View {
         TabView(selection: $selectedTab) {
             ForEach(availableTabs) { tab in
-                tab.makeContentView(selectedTab: $selectedTab)
-                    .tabItem {
-                        tab.label
-                    }
-                    .tag(tab)
-                    .toolbarBackground(.visible, for: .tabBar)
+//                tab.makeContentView(selectedTab: $selectedTab)
+//                    .tabItem {
+//                        tab.label
+//                    }
+//                    .tag(tab)
+//                    .toolbarBackground(.visible, for: .tabBar)
             }
         }
         .environment(networkMonitor)
@@ -66,12 +66,12 @@ struct AppView: View {
             HStack(spacing: 0) {
                 TabView(selection: $selectedTab) {
                     ForEach(availableTabs) { tab in
-                        tab
-                            .makeContentView(selectedTab: $selectedTab)
-                            .tabItem {
-                                Image(systemName: tab.iconName)
-                            }
-                            .tag(tab)
+//                        tab
+//                            .makeContentView(selectedTab: $selectedTab)
+//                            .tabItem {
+//                                Image(systemName: tab.iconName)
+//                            }
+//                            .tag(tab)
                     }
                 }
                 .introspect(.tabView, on: .iOS(.v17)) { (tabview: UITabBarController) in

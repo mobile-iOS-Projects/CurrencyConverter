@@ -54,7 +54,7 @@ public struct ConversionView: View {
                                 store.send(.openConversionDetailsView)
                             }
                             .onLongPressGesture {
-                                store.send(.openRecentSearchView)
+                                store.send(.openFlagsScreen)
                             }
                     }
                 }
@@ -77,6 +77,10 @@ public struct ConversionView: View {
             .toolbar(.hidden, for: .navigationBar)
         } destination: { key in
             switch key.case {
+            case let .flagsScreen(test):
+                FlagsView(store: store.scope(state: \.flagsState, action: \.flagsAction))
+                    .toolbar(.hidden, for: .navigationBar)
+                    .toolbar(.hidden, for: .tabBar)
             case let .recentSearchScreen(test):
                 RecentsSearchView(store: store.scope(state: \.recentSearch, action: \.recentSearchActioon))
             case let .statisticScreen(test):

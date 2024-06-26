@@ -221,7 +221,7 @@ let macOSAppTarget: Target = .target(
     product: .app,
     productName: "CurrencyConverter",
     bundleId: "$(APP_BUNDLE_ID_MACOS)",
-    deploymentTargets: .currencyDeploymentTargets(for: [.iOS]),
+    deploymentTargets: .currencyDeploymentTargets(for: [.macOS]),
     infoPlist: .default,
     sources: [
         "Sources/**/*.swift"
@@ -238,6 +238,7 @@ let macOSAppTarget: Target = .target(
         .project(target: "Env", path: .relativeToRoot("Features/Foundation/Env")),
         .external(name: "Factory"),
         .external(name: "SwiftUIIntrospect"),
+        .external(name: "Lottie")
     ],
     settings: .settings(
         configurations: [

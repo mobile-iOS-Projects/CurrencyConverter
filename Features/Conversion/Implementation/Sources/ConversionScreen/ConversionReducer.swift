@@ -17,6 +17,7 @@ extension ConversionReducer {
     public enum Path {
         case recentSearchScreen(RecentsSearchReducer)
         case statisticScreen(StatisticReducer)
+        case flagsScreen(FlagsReducer)
     }
 }
 
@@ -33,6 +34,7 @@ public struct ConversionReducer {
     public struct State {
         @Presents var сonversionDetails: ConversionDetailsReducer.State?
 
+        var flagsState = FlagsReducer.State()
         var recentSearch = RecentsSearchReducer.State()
         var statisticScreen = StatisticReducer.State()
         
@@ -67,6 +69,9 @@ public struct ConversionReducer {
         
         case statisticAction(StatisticReducer.Action)
         case openStatistichView
+        
+        case flagsAction(FlagsReducer.Action)
+        case openFlagsScreen
 
         case onViewDidLoad
         case changeViewState(Loadable<[Currency], Error>)
@@ -84,13 +89,16 @@ public struct ConversionReducer {
         Scope(state: \.statisticScreen, action: \.statisticAction) {
             StatisticReducer()
         }
+        
+        Scope(state: \.flagsState, action: \.flagsAction) {
+            FlagsReducer()
+        }
 
         Reduce { state, action in
             switch action {
             case let .recentSearchActioon(action):
                 switch action {
                 case .testction:
-                    print("recentSearchActioon")
                     state.path.append(.statisticScreen(StatisticReducer.State()))
                     return .none
                 }
@@ -100,6 +108,9 @@ public struct ConversionReducer {
                     state.path.removeAll()
                     return .none
                 }
+            case .openFlagsScreen:
+                state.path.append(.flagsScreen(FlagsReducer.State()))
+                return .none
             case .openConversionDetailsView:
                 state.сonversionDetails = ConversionDetailsReducer.State()
                 return .none

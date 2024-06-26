@@ -9,13 +9,8 @@ import SwiftUI
 import ComposableArchitecture
 
 public struct ConversionDetailsView: View {
-
     @Bindable var store: StoreOf<ConversionDetailsReducer>
-    
-    public init(store: StoreOf<ConversionDetailsReducer>) {
-        self.store = store
-    }
-    
+
     public var body: some View {
         Text("ConversionDetailsView!")
     }
